@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 
 import { MenubarModule } from "primeng/menubar";
 import { MenuItem } from "primeng/api";
+import { BarraMenuComponent } from './barra-menu/barra-menu.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BarraMenuComponent
   ],
   imports: [
     BrowserModule,
