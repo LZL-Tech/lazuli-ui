@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MenubarModule } from "primeng/menubar";
-import { MenuItem } from "primeng/api";
 import { BarraMenuComponent } from './barra-menu/barra-menu.component';
+import { ProdutoModule } from './produto/produto.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { BarraMenuComponent } from './barra-menu/barra-menu.component';
     BrowserModule,
     AppRoutingModule,
     MenubarModule,
+		ProdutoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
