@@ -23,7 +23,6 @@ import { TipoProdutoService } from './tipo-produto.service';
 		ButtonModule
   ],
 	providers: [
-		TipoProdutoService
 	]
 })
 export class ProdutoModule { }

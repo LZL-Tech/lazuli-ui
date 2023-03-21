@@ -5,6 +5,8 @@ export class Produto {
 	idProduto?: number;
 	descricao?: string;
 	marca?: string;
+	quantidadeEstoque?: number;
+	preco?: number;
 	tipoProduto?: TipoProduto;
 	unidadeMedida?: UnidadeMedida;
 }

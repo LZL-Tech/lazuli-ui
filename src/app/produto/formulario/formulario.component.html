@@ -33,13 +33,26 @@
 			</div>
 		</div>
 
-		<div class="col-6">
+		<div class="col-2">
 			<label for="unidade-medida">Unidade de medida</label>
 			<p-dropdown [(ngModel)]="produto.unidadeMedida" id="unidade-medida" name="unidadeMedida" [options]="unidadesMedida" optionLabel="simbolo"></p-dropdown>
 		</div>
 
+		<div class="col-2">
+			<label for="unidade-medida">Quantidade em estoque</label>
+			<input pInputText [(ngModel)]="produto.quantidadeEstoque" id="quantidade-estoque" name="quantidadeEstoque"/>
+		</div>
+
+		<div class="col-2">
+			<label for="preco-produto">Preço de venda</label>
+			<div class="p-inputgroup">
+				<span class="p-inputgroup-addon">R$</span>
+				<input pInputText [(ngModel)]="produto.preco" id="preco-produto" name="precoProduto" type="number" [disabled]="isProdutoIngrediente()"/>
+			</div>
+		</div>
+
 		<div class="col-1">
-			<button pButton label="Salvar" icon="fa-solid fa-floppy-disk" iconPos="right"></button>
+			<button pButton type="submit" label="Salvar" icon="fa-solid fa-floppy-disk" iconPos="right"></button>
 		</div>
 	</form>
 </div>

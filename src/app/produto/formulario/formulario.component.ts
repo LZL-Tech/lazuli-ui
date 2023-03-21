@@ -4,6 +4,7 @@ import { Produto } from 'src/app/core/model/produto';
 import { TipoProduto } from 'src/app/core/model/tipo.produto';
 import { UnidadeMedida } from 'src/app/core/model/unidade.medida';
 import { TipoProdutoService } from 'src/app/produto/tipo-produto.service';
+import { ProdutoService } from '../produto.service';
 import { UnidadeMedidaService } from '../unidade-medida.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class FormularioComponent implements OnInit {
 
 	unidadesMedida: UnidadeMedida[] = new Array<UnidadeMedida>();
 
-  constructor(private tipoProdutoService: TipoProdutoService, private unidadeMedidaService: UnidadeMedidaService) {
+  constructor(private produtoService: ProdutoService,private tipoProdutoService: TipoProdutoService, private unidadeMedidaService: UnidadeMedidaService) {
 
   }
 
@@ -30,6 +31,11 @@ export class FormularioComponent implements OnInit {
   }
 
 	onSubmit(produtoForm: NgForm) {
+		console.log('Salvando produto')
+		console.log(produtoForm.value)
+		console.log('Produto')
+		console.log(this.produto)
+		this.produtoService.save(this.produto).subscribe(response => console.log(response))
 	}
 
 	isProdutoIngrediente(): boolean {
