@@ -5,7 +5,7 @@
 		</h3>
 
 		<div class="col-6">
-			<label for="descricaoProduto">Descrição do produto</label>
+			<label for="descricao-produto">Descrição do produto</label>
 			<div class="p-inputgroup">
 				<span class="p-inputgroup-addon">
 					<i class="fa-solid fa-cake-candles"></i>
@@ -16,26 +16,30 @@
 		</div>
 
 		<div class="col-6">
-			<label for="descricaoProduto">Marca</label>
+			<label for="tipo-produto">
+				Tipo de produto
+			</label>
+			<p-dropdown [(ngModel)]="produto.tipoProduto" id="tipo-produto" name="tipoProduto" [options]="tiposProduto" optionLabel="descricao"></p-dropdown>
+		</div>
+
+		<div class="col-6">
+			<label for="marca">Marca</label>
 			<div class="p-inputgroup">
 				<span class="p-inputgroup-addon">
 					<i class="fa-solid fa-registered"></i>
 				</span>
 				<input pInputText id="marca" name="marca" type="text" [(ngModel)]="produto.marca"
-					[minlength]="3" [required]="true" placeholder="Lazuli"/>
+					[minlength]="3" [required]="isProdutoIngrediente()" placeholder="Lazuli" [disabled]="!isProdutoIngrediente()"/>
 			</div>
 		</div>
 
 		<div class="col-6">
-			<label for="tipoProduto">
-				Tipo de produto
-			</label>
-			<p-dropdown [(ngModel)]="produto.tipoProduto" name="tipoProduto" [options]="tiposProduto" optionLabel="descricao"></p-dropdown>
+			<label for="unidade-medida">Unidade de medida</label>
+			<p-dropdown [(ngModel)]="produto.unidadeMedida" id="unidade-medida" name="unidadeMedida" [options]="unidadesMedida" optionLabel="simbolo"></p-dropdown>
 		</div>
 
-		<div class="col-6">
-			<label for="unidadeMedida">Unidade de medida</label>
-			<p-dropdown [(ngModel)]="produto.unidadeMedida" name="unidadeMedida" [options]="unidadesMedida" optionLabel="simbolo"></p-dropdown>
+		<div class="col-1">
+			<button pButton label="Salvar" icon="fa-solid fa-floppy-disk" iconPos="right"></button>
 		</div>
 	</form>
 </div>

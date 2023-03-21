@@ -5,6 +5,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormularioComponent } from './formulario/formulario.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ButtonModule } from "primeng/button";
+import { TipoProdutoService } from './tipo-produto.service';
 
 
 @NgModule({
@@ -17,7 +19,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 		FormsModule,
 		InputTextModule,
 		InputTextModule,
-		DropdownModule
-  ]
+		DropdownModule,
+		ButtonModule
+  ],
+	providers: [
+		TipoProdutoService
+	]
 })
 export class ProdutoModule { }
