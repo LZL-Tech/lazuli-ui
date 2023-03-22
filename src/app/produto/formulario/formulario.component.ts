@@ -26,8 +26,16 @@ export class FormularioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-		this.tipoProdutoService.findAll().subscribe(tipos => this.tiposProduto = tipos);
-		this.unidadeMedidaService.findAll().subscribe(unidades => this.unidadesMedida = unidades);
+		this.tipoProdutoService.findAll().subscribe(tipos => {
+			tipos.forEach(tipo => {
+				this.tiposProduto.push(TipoProduto.fromJson(tipo))
+			});
+		});
+		this.unidadeMedidaService.findAll().subscribe(unidades => {
+			unidades.forEach(unidade => {
+				this.unidadesMedida.push(UnidadeMedida.fromJson(unidade))
+			});
+		});
   }
 
 	onSubmit(produtoForm: NgForm) {
