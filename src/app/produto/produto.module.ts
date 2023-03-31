@@ -4,20 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormularioComponent } from './formulario/formulario.component';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
+import { ListaComponent } from './lista/lista.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    FormularioComponent,
-  ],
-  imports: [
-    CommonModule,
+	declarations: [FormularioComponent, ListaComponent],
+	imports: [
+		CommonModule,
 		BrowserAnimationsModule,
 		FormsModule,
 		InputTextModule,
 		InputTextModule,
-		DropdownModule
-  ]
+		DropdownModule,
+	],
 })
-export class ProdutoModule { }
+export class ProdutoModule {}

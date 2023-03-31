@@ -1,0 +1,19 @@
+<h2>Listagem de Produtos</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Descrição</th>
+			<th>Marca</th>
+			<th>Preco</th>
+			<th>Quantidade</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of lista_add_produtos">
+			<td>{{ item.descricao }}</td>
+			<td>{{ item.marca }}</td>
+			<td>{{ item.preco }}</td>
+			<td>{{ item.qtd_estoque }}</td>
+		</tr>
+	</tbody>
+</table>
