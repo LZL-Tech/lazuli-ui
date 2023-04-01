@@ -16,7 +16,6 @@ export class FormularioComponent implements OnInit {
 
 	produto = new Produto();
 
-	// TODO: Obter tipos de produtos do back end
 	tiposProduto: TipoProduto[] = new Array<TipoProduto>();
 
 	unidadesMedida: UnidadeMedida[] = new Array<UnidadeMedida>();
