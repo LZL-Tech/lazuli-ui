@@ -40,10 +40,18 @@ export class FormularioComponent implements OnInit {
 
 	onSubmit(produtoForm: NgForm) {
 		console.log('Salvando produto')
-		console.log(produtoForm.value)
-		console.log('Produto')
 		console.log(this.produto)
+		console.log('Produto')
+		this.removerAtributosPorTipoProduto()
 		this.produtoService.save(this.produto).subscribe(response => console.log(response))
+	}
+
+	private removerAtributosPorTipoProduto() {
+		if (this.isProdutoIngrediente()) {
+			this.produto.preco = undefined;
+		} else {
+			this.produto.marca = undefined;
+		}
 	}
 
 	isProdutoIngrediente(): boolean {
