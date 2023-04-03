@@ -24,14 +24,6 @@ export class BarraMenuComponent implements OnInit {
         ]
       },
       {
-        label: "Receita",
-        icon: "fa fa-kitchen-set",
-        items: [
-          { label: "Cadastrar" },
-          { label: "Lista" },
-        ]
-      },
-      {
         label: "Venda",
         icon: "fa fa-cart-shopping",
         items: [
