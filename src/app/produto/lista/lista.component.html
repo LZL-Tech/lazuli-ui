@@ -1,19 +1,36 @@
 <h2>Listagem de Produtos</h2>
-<table>
-	<thead>
+
+<p-table [value]="produtos">
+	<ng-template pTemplate="header">
 		<tr>
-			<th>Descrição</th>
-			<th>Marca</th>
-			<th>Preco</th>
-			<th>Quantidade</th>
+			<th pSortableColumn="idProduto">
+				# <p-sortIcon field="idProduto"></p-sortIcon>
+			</th>
+			<th pSortableColumn="descricao">
+				Descrição <p-sortIcon field="descricao"></p-sortIcon>
+			</th>
+			<th>
+				Marca
+			</th>
+			<th pSortableColumn="preco">
+				Preco <p-sortIcon field="preco"></p-sortIcon>
+			</th>
+			<th pSortableColumn="quantidadeEstoque">
+				Quantidade <p-sortIcon field="quantidadeEstoque"></p-sortIcon>
+			</th>
+			<th pSortableColumn="tipoProduto.descricao">
+				Tipo <p-sortIcon field="tipoProduto.descricao"></p-sortIcon>
+			</th>
 		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let item of lista_add_produtos">
-			<td>{{ item.descricao }}</td>
-			<td>{{ item.marca }}</td>
-			<td>{{ item.preco }}</td>
-			<td>{{ item.qtd_estoque }}</td>
+	</ng-template>
+	<ng-template pTemplate="body" let-produto>
+		<tr>
+			<td>{{ produto.idProduto }}</td>
+			<td>{{ produto.descricao }}</td>
+			<td>{{ produto.marca }}</td>
+			<td>{{ produto.preco }}</td>
+			<td>{{ produto.quantidadeEstoque }}</td>
+			<td>{{ produto.tipoProduto.descricao }}</td>
 		</tr>
-	</tbody>
-</table>
+	</ng-template>
+</p-table>

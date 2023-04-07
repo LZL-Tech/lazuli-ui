@@ -19,7 +19,7 @@ export class BarraMenuComponent implements OnInit {
         icon: "fa fa-cookie-bite",
         items: [
           { label: "Cadastrar", routerLink: 'produto/cadastrar' },
-          { label: "Lista" },
+          { label: "Lista", routerLink: 'produto/listar' },
         ]
       },
       {

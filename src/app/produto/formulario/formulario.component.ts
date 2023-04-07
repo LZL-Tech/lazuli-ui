@@ -20,9 +20,7 @@ export class FormularioComponent implements OnInit {
 
 	unidadesMedida: UnidadeMedida[] = new Array<UnidadeMedida>();
 
-  constructor(private produtoService: ProdutoService,private tipoProdutoService: TipoProdutoService, private unidadeMedidaService: UnidadeMedidaService) {
-
-  }
+  constructor(private produtoService: ProdutoService, private tipoProdutoService: TipoProdutoService, private unidadeMedidaService: UnidadeMedidaService) { }
 
   ngOnInit(): void {
 		this.tipoProdutoService.findAll().subscribe(tipos => {
