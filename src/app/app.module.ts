@@ -7,17 +7,21 @@ import { AppComponent } from './app.component';
 import { MenubarModule } from "primeng/menubar";
 import { BarraMenuComponent } from './barra-menu/barra-menu.component';
 import { ProdutoModule } from './produto/produto.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BarraMenuComponent
+    BarraMenuComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MenubarModule,
-		ProdutoModule
+		ProdutoModule,
+		HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

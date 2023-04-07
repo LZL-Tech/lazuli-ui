@@ -4,38 +4,71 @@
 			Cadastro de produto
 		</h3>
 
-		<div class="col-6">
-			<label for="descricaoProduto">Descrição do produto</label>
+		<div class="lg:col-6 sm:col-12">
+			<label for="descricao-produto">Descrição do produto</label>
 			<div class="p-inputgroup">
 				<span class="p-inputgroup-addon">
 					<i class="fa-solid fa-cake-candles"></i>
 				</span>
-				<input pInputText id="descricao-produto" name="descricaoProduto" type="text" [(ngModel)]="produto.descricao"
-					[minlength]="3" [required]="true" placeholder="Bolo de prestigio"/>
+				<input pInputText id="descricao-produto" name="descricaoProduto" #descricaoProduto="ngModel" type="text" [(ngModel)]="produto.descricao"
+					[minlength]="3" [required]="true" class="ng-touched" placeholder="Bolo de prestigio" autocomplete="off"/>
 			</div>
+			<small class="p-error block" *ngIf="descricaoProduto.hasError('required') && descricaoProduto.touched">
+				*Campo obrigatório
+			</small>
+			<small class="p-error" *ngIf="descricaoProduto.hasError('minlength') && descricaoProduto.dirty">
+				*Descrição deve conter no mínimo 3 caracteres
+			</small>
 		</div>
 
-		<div class="col-6">
-			<label for="descricaoProduto">Marca</label>
+		<div class="lg:col-6 sm:col-12">
+			<label for="tipo-produto">
+				Tipo de produto
+			</label>
+			<p-dropdown [(ngModel)]="produto.tipoProduto" #tipoProduto="ngModel" id="tipo-produto" name="tipoProduto"
+				class="ng-touched" [options]="tiposProduto" optionLabel="descricao" [required]="true"></p-dropdown>
+			<small class="p-error" *ngIf="tipoProduto.hasError('required') && tipoProduto.touched">*Campo obrigatório</small>
+		</div>
+
+		<div class="md:col-6 sm:col-12">
+			<label for="marca">Marca</label>
 			<div class="p-inputgroup">
 				<span class="p-inputgroup-addon">
 					<i class="fa-solid fa-registered"></i>
 				</span>
-				<input pInputText id="marca" name="marca" type="text" [(ngModel)]="produto.marca"
-					[minlength]="3" [required]="true" placeholder="Lazuli"/>
+				<input pInputText id="marca" name="marca" type="text" [(ngModel)]="produto.marca" #marca="ngModel"
+					[minlength]="2" [required]="isProdutoIngrediente()" placeholder="Lazuli" [disabled]="!isProdutoIngrediente()"/>
+			</div>
+			<small class="p-error" *ngIf="marca.hasError('required') && isProdutoIngrediente() && marca.touched">
+				*Campo obrigatório
+			</small>
+			<small class="p-error" *ngIf="marca.hasError('minlength') && isProdutoIngrediente() && marca.touched">
+				*Marca deve conter no minímo 2 caracteres
+			</small>
+		</div>
+
+		<div class="lg:col-2 md:col-6 sm:col-12">
+			<label for="unidade-medida">Unidade de medida</label>
+			<p-dropdown [(ngModel)]="produto.unidadeMedida" #unidadeMedida="ngModel" id="unidade-medida" name="unidadeMedida"
+				class="ng-touched" [options]="unidadesMedida" optionLabel="simbolo" [required]="true"></p-dropdown>
+			<small class="p-error" *ngIf="unidadeMedida.hasError('required') && unidadeMedida.touched">*Campo obrigatório</small>
+		</div>
+
+		<div class="lg:col-2 md:col-6 sm:col-12">
+			<label for="unidade-medida">Qtd. em estoque</label>
+			<input pInputText [(ngModel)]="produto.quantidadeEstoque" id="quantidade-estoque" name="quantidadeEstoque" type="number" autocomplete="off"/>
+		</div>
+
+		<div class="lg:col-2 md:col-6 sm:col-12">
+			<label for="preco-produto">Preço de venda</label>
+			<div class="p-inputgroup">
+				<span class="p-inputgroup-addon">R$</span>
+				<input pInputText [(ngModel)]="produto.preco" id="preco-produto" name="precoProduto" type="number" [disabled]="isProdutoIngrediente()"/>
 			</div>
 		</div>
 
-		<div class="col-6">
-			<label for="tipoProduto">
-				Tipo de produto
-			</label>
-			<p-dropdown [(ngModel)]="produto.tipoProduto" name="tipoProduto" [options]="tiposProduto" optionLabel="descricao"></p-dropdown>
-		</div>
-
-		<div class="col-6">
-			<label for="unidadeMedida">Unidade de medida</label>
-			<p-dropdown [(ngModel)]="produto.unidadeMedida" name="unidadeMedida" [options]="unidadesMedida" optionLabel="simbolo"></p-dropdown>
+		<div class="lg:col-2 md:col-6 sm:col-12">
+			<button pButton type="submit" label="Salvar" icon="fa-solid fa-floppy-disk" [iconPos]="'right'" [disabled]="produtoForm.invalid"></button>
 		</div>
 	</form>
 </div>
