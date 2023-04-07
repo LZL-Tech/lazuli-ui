@@ -8,13 +8,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ButtonModule } from "primeng/button";
 import { TipoProdutoService } from './tipo-produto.service';
 
+import { ListaComponent } from './lista/lista.component';
 
 @NgModule({
-  declarations: [
-    FormularioComponent,
-  ],
-  imports: [
-    CommonModule,
+	declarations: [FormularioComponent, ListaComponent],
+	imports: [
+		CommonModule,
 		BrowserAnimationsModule,
 		FormsModule,
 		InputTextModule,
@@ -25,4 +24,4 @@ import { TipoProdutoService } from './tipo-produto.service';
 	providers: [
 	]
 })
-export class ProdutoModule { }
+export class ProdutoModule {}

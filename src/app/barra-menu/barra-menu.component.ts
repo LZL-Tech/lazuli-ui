@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MenuItem } from "primeng/api";
+import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-barra-menu',
-  templateUrl: './barra-menu.component.html',
-  styleUrls: ['./barra-menu.component.css']
+	selector: 'app-barra-menu',
+	templateUrl: './barra-menu.component.html',
+	styleUrls: ['./barra-menu.component.css'],
 })
 export class BarraMenuComponent implements OnInit {
+	constructor() {}
 
-  constructor() { }
-
-  menus: MenuItem[] = [];
+	menus: MenuItem[] = [];
 
   ngOnInit(): void {
     this.menus = [
