@@ -6,7 +6,10 @@ import { ButtonModule } from "primeng/button";
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormularioComponent } from './formulario/formulario.component';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+
 
 import { ListaComponent } from './lista/lista.component';
 
@@ -21,6 +24,8 @@ import { ListaComponent } from './lista/lista.component';
 		DropdownModule,
 		ButtonModule,
 		TableModule,
+		MessageModule,
+		MessagesModule
   ],
 	providers: [
 	]

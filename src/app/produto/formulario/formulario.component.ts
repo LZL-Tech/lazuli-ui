@@ -6,11 +6,13 @@ import { UnidadeMedida } from 'src/app/core/model/unidade.medida';
 import { TipoProdutoService } from 'src/app/produto/tipo-produto.service';
 import { ProdutoService } from '../produto.service';
 import { UnidadeMedidaService } from '../unidade-medida.service';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.css']
+  styleUrls: ['./formulario.component.css'],
+	providers: [MessageService]
 })
 export class FormularioComponent implements OnInit {
 
@@ -20,7 +22,13 @@ export class FormularioComponent implements OnInit {
 
 	unidadesMedida: UnidadeMedida[] = new Array<UnidadeMedida>();
 
-  constructor(private produtoService: ProdutoService, private tipoProdutoService: TipoProdutoService, private unidadeMedidaService: UnidadeMedidaService) { }
+	mensagens: Message[] = new Array<Message>();
+
+  constructor(
+		private produtoService: ProdutoService,
+		private tipoProdutoService: TipoProdutoService,
+		private unidadeMedidaService: UnidadeMedidaService,
+		private messageService: MessageService) { }
 
   ngOnInit(): void {
 		this.tipoProdutoService.findAll().subscribe(tipos => {
@@ -37,10 +45,13 @@ export class FormularioComponent implements OnInit {
 
 	onSubmit(produtoForm: NgForm) {
 		console.log('Salvando produto')
-		console.log(this.produto)
-		console.log('Produto')
 		this.removerAtributosPorTipoProduto()
-		this.produtoService.save(this.produto).subscribe(response => console.log(response))
+		this.produtoService.save(this.produto).subscribe(response => {
+			if (response?.status === 201) {
+				this.messageService.add({severity: "success", summary: "Sucesso", detail: "Produto salvo"})
+				produtoForm.reset()
+			}
+		});
 	}
 
 	private removerAtributosPorTipoProduto() {

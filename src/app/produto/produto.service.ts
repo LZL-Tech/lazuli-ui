@@ -21,6 +21,6 @@ export class ProdutoService {
 	}
 
 	save(produto: Produto): Observable<any> {
-		return this.http.post(this.url, produto.toJson())
+		return this.http.post(this.url, produto.toJson(), {observe: 'response'})
 	}
 }
