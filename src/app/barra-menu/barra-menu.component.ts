@@ -34,7 +34,7 @@ export class BarraMenuComponent implements OnInit {
         label: "Compra",
         icon: "fa fa-shop",
         items: [
-          { label: "Cadastrar" },
+          { label: "Cadastrar", routerLink: 'compra/cadastrar' },
           { label: "Lista" },
         ]
       },

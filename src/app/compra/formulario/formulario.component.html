@@ -1,0 +1,11 @@
+<div class="h">
+	<p-pickList [source]="produtosCadastrados" [target]="produtosComprados"
+		[sourceHeader]="'Selecionar'" [targetHeader]="'Comprados'"
+		[sourceStyle]="{'height':'360px'}" [targetStyle]="{'height':'360px'}" [filterBy]="'descricao'" [responsive]="true">
+		<ng-template let-produto pTemplate="item">
+			<div>
+				<div>{{produto.descricao}}</div>
+			</div>
+		</ng-template>
+	</p-pickList>
+</div>
