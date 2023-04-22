@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Compra } from 'src/app/core/model/compra';
 import { Produto } from 'src/app/core/model/produto';
 import { ProdutoService } from 'src/app/produto/produto.service';
 
@@ -9,8 +10,11 @@ import { ProdutoService } from 'src/app/produto/produto.service';
 })
 export class FormularioComponent implements OnInit {
 
+	compra: Compra = new Compra()
 	produtosCadastrados = new Array<Produto>()
 	produtosComprados = new Array<Produto>()
+	dataAtual = new Date()
+	mostrarDialogProduto = false
 
   constructor(private produtoService: ProdutoService) { }
 
@@ -25,5 +29,11 @@ export class FormularioComponent implements OnInit {
 			}
 		);
   }
+
+	onSubmit(compraForm: any) { console.log('Enviado') }
+
+	adicionarProdutoCompradoDialog() {
+		this.mostrarDialogProduto = true
+	}
 
 }

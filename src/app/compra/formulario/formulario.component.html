@@ -1,11 +1,56 @@
-<div class="h">
-	<p-pickList [source]="produtosCadastrados" [target]="produtosComprados"
-		[sourceHeader]="'Selecionar'" [targetHeader]="'Comprados'"
-		[sourceStyle]="{'height':'360px'}" [targetStyle]="{'height':'360px'}" [filterBy]="'descricao'" [responsive]="true">
-		<ng-template let-produto pTemplate="item">
-			<div>
-				<div>{{produto.descricao}}</div>
+<div>
+	<app-produto-compra-dialog [visivel]="mostrarDialogProduto">
+	</app-produto-compra-dialog>
+
+	<form (ngSubmit)="onSubmit(compraForm)" #compraForm="ngForm" class="grid p-fluid">
+
+		<div class="col-8 field">
+			<label for="fornecedorCompra">Fornecedor</label>
+			<div class="p-inputgroup">
+				<span class="p-inputgroup-addon">
+					<i class="fa-solid fa-truck"></i>
+				</span>
+				<input pInputText type="text" id="fornecedor-compra" name="fornecedorCompra" #fornecedorCompra="ngModel" [(ngModel)]="compra.fornecedor"
+					placeholder="Assaí">
 			</div>
-		</ng-template>
-	</p-pickList>
+		</div>
+
+		<div class="col-4 field">
+			<!-- TODO: Colocar dias da semana em português -->
+			<label for="dataCompra">Data da Compra</label>
+			<div>
+				<p-calendar [(ngModel)]="compra.dataCompra" name="dataCompra" [dateFormat]="'dd/mm/yy'" [showIcon]="true" [maxDate]="dataAtual">
+				</p-calendar>
+			</div>
+		</div>
+
+		<p-table [value]="produtosComprados" class="col-12">
+			<ng-template pTemplate="header">
+				<tr>
+					<th>
+						#
+					</th>
+					<th>
+						Produto
+					</th>
+					<th>
+						Quantidade
+					</th>
+					<th>
+						Preço Unitário
+					</th>
+					<th>
+						Preço Total
+					</th>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-produto>
+
+			</ng-template>
+		</p-table>
+
+		<div class="col-2 field">
+			<p-button class="" [label]="'Salvar'" [icon]="'fa-solid fa-floppy-disk'" [iconPos]="'right'" type="submit"></p-button>
+		</div>
+	</form>
 </div>
