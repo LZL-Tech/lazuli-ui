@@ -1,5 +1,5 @@
 <div>
-	<app-produto-compra-dialog [visivel]="mostrarDialogProduto">
+	<app-produto-compra-dialog [(visivel)]="mostrarDialogProduto">
 	</app-produto-compra-dialog>
 
 	<form (ngSubmit)="onSubmit(compraForm)" #compraForm="ngForm" class="grid p-fluid">
@@ -24,7 +24,14 @@
 			</div>
 		</div>
 
+		<p-toolbar class="col-12 mt-5">
+			<ng-template pTemplate="left">
+				<p-button [label]="'Adicionar'" [icon]="'fa-solid fa-plus'" (onClick)="adicionarProdutoCompradoDialog()"></p-button>
+			</ng-template>
+		</p-toolbar>
+
 		<p-table [value]="produtosComprados" class="col-12">
+
 			<ng-template pTemplate="header">
 				<tr>
 					<th>
@@ -44,6 +51,7 @@
 					</th>
 				</tr>
 			</ng-template>
+
 			<ng-template pTemplate="body" let-produto>
 
 			</ng-template>

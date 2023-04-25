@@ -6,6 +6,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
+import { ToolbarModule } from 'primeng/toolbar';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+
 import { FormularioComponent } from './formulario/formulario.component';
 import { ProdutoCompraDialogComponent } from './produto-compra-dialog/produto-compra-dialog.component';
 
@@ -22,7 +25,9 @@ import { ProdutoCompraDialogComponent } from './produto-compra-dialog/produto-co
 		InputTextModule,
 		CalendarModule,
 		TableModule,
-		DialogModule
+		DialogModule,
+		ToolbarModule,
+		AutoCompleteModule
 	]
 })
 export class CompraModule { }
