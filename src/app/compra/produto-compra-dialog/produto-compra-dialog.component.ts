@@ -43,7 +43,7 @@ export class ProdutoCompraDialogComponent implements OnInit {
 	buscarProdutoPorDescricao(event: any) {
 		this.results = this.produtosCadastrados.filter(
 			produto => {
-				produto.descricao?.toUpperCase().includes(event.query.toUpperCase())
+				return produto.descricao?.toUpperCase().includes(event.query.toUpperCase())
 			}
 		)
 	}
