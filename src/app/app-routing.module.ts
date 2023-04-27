@@ -4,6 +4,7 @@ import { FormularioComponent as ProdutoFormComponent } from './produto/formulari
 import { ListaComponent as ProdutoListComponent } from './produto/lista/lista.component';
 import { FormularioComponent as CompraFormComponent } from './compra/formulario/formulario.component';
 import { HomeComponent } from './home/home.component';
+import { ListaCompraComponent } from './compra/lista-compra/lista-compra.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
 	{path: 'produto/cadastrar', component: ProdutoFormComponent},
 	{path: 'produto/listar', component: ProdutoListComponent},
 	{path: 'compra/cadastrar', component: CompraFormComponent},
+	{path: 'compra/listar', component: ListaCompraComponent}
 ]
 
 @NgModule({
