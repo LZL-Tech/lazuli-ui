@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CompraProduto } from 'src/app/core/model/compra.produto';
 import { Produto } from 'src/app/core/model/produto';
 import { ProdutoService } from 'src/app/produto/produto.service';
@@ -14,6 +15,7 @@ export class ProdutoCompraDialogComponent implements OnInit {
 	@Output()	visivelChange = new EventEmitter<boolean>()
 	@Output() adicionarProduto = new EventEmitter<CompraProduto>()
 
+	@ViewChild('produtoCompradoForm') produtoCompradoForm!: NgForm;
 	produtoComprado = new CompraProduto()
 	produtosCadastrados = new Array<Produto>()
 	results = new Array<Produto>()
@@ -50,6 +52,8 @@ export class ProdutoCompraDialogComponent implements OnInit {
 
 	adicionarProdutoComprado() {
 		this.adicionarProduto.emit(this.produtoComprado)
+		this.alterarVisibilidade()
+		this.produtoComprado = new CompraProduto()
 	}
 
 	calcularPrecoTotal() {

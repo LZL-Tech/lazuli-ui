@@ -9,7 +9,6 @@ import { MenubarModule } from "primeng/menubar";
 import { BarraMenuComponent } from './barra-menu/barra-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ProdutoModule } from './produto/produto.module';
-import { PickListModule } from 'primeng/picklist';
 import { CompraModule } from './compra/compra.module';
 
 @NgModule({
@@ -23,7 +22,8 @@ import { CompraModule } from './compra/compra.module';
     AppRoutingModule,
     MenubarModule,
 		ProdutoModule,
-		HttpClientModule
+		HttpClientModule,
+		CompraModule
   ],
   providers: [],
   bootstrap: [AppComponent]
