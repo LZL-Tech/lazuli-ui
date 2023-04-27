@@ -11,12 +11,13 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 
 import { FormularioComponent } from './formulario/formulario.component';
 import { ProdutoCompraDialogComponent } from './produto-compra-dialog/produto-compra-dialog.component';
-
+import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 
 @NgModule({
 	declarations: [
 		FormularioComponent,
-		ProdutoCompraDialogComponent
+		ProdutoCompraDialogComponent,
+		ListaCompraComponent
 	],
 	imports: [
 		CommonModule,
@@ -27,7 +28,8 @@ import { ProdutoCompraDialogComponent } from './produto-compra-dialog/produto-co
 		TableModule,
 		DialogModule,
 		ToolbarModule,
-		AutoCompleteModule
+		AutoCompleteModule,
+		TableModule
 	]
 })
 export class CompraModule { }
