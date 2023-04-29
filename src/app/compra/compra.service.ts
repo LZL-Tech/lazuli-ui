@@ -21,6 +21,6 @@ export class CompraService {
 	}
 
 	save(compra: Compra) {
-		return this.http.post(this.url, compra.toJson(), {headers: new HttpHeaders()})
+		return this.http.post(this.url, compra.toJson())
 	}
 }
