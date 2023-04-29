@@ -1,10 +1,14 @@
 <div>
+	<div>
+		<p-messages></p-messages>
+	</div>
+
 	<app-produto-compra-dialog [(visivel)]="mostrarDialogProduto" (adicionarProduto)="adicionarProdutoComprado($event)">
 	</app-produto-compra-dialog>
 
 	<form (ngSubmit)="onSubmit(compraForm)" #compraForm="ngForm" class="grid p-fluid">
 
-		<div class="col-8 field">
+		<div class="lg:col-8 col-12 field">
 			<label for="fornecedorCompra">Fornecedor</label>
 			<div class="p-inputgroup">
 				<span class="p-inputgroup-addon">
@@ -15,7 +19,7 @@
 			</div>
 		</div>
 
-		<div class="col-4 field">
+		<div class="lg:col-4 col-12 field">
 			<!-- TODO: Colocar dias da semana em português -->
 			<label for="dataCompra">Data da Compra</label>
 			<div>
