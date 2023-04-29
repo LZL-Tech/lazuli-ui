@@ -24,7 +24,9 @@
 			</div>
 		</div>
 
-		<p-table [value]="compra.produtos" class="col-12" [paginator]="true" [rows]="10" >
+		<p-table [value]="compra.produtos" class="col-12" [paginator]="true" [rows]="5"
+			[rowsPerPageOptions]="[5, compra.produtos.length]" [totalRecords]="compra.produtos.length"
+			[currentPageReportTemplate]="'Total de produtos: {totalRecords}'" [showCurrentPageReport]="true">
 
 			<ng-template pTemplate="caption">
 				<div class="flex justify-content-between align-items-center">
