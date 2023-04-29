@@ -1,0 +1,28 @@
+<h2>Lista de Compras</h2>
+
+<p-table [value]="listaCompra">
+	<ng-template pTemplate="header">
+		<tr>
+			<th pSortableColumn="IdCompra">
+				# <p-sortIcon field="IdCompra"></p-sortIcon>
+			</th>
+			<th pSortableColumn="Fornecedor">
+				Fornecedor <p-sortIcon field="fornecedor"></p-sortIcon>
+			</th>
+			<th pSortableColumn="quantideProduto">
+				Quantidade <p-sortIcon field="quantidadeProduto"></p-sortIcon>
+			</th>
+			<th pSortableColumn="gastoProduto">
+				Gasto <p-sortIcon field="gastoProduto"></p-sortIcon>
+			</th>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="body" let-compra>
+		<tr>
+			<td>{{ compra.idCompra }}</td>
+			<td>{{ compra.fornecedor }}</td>
+			<td>{{ compra.quantidadeProduto }}</td>
+			<td>{{ compra.gastoProduto }}</td>
+		</tr>
+	</ng-template>
+</p-table>

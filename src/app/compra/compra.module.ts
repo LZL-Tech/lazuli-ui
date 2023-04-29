@@ -14,11 +14,13 @@ import { ProdutoCompraDialogComponent } from './produto-compra-dialog/produto-co
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 
+import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 
 @NgModule({
 	declarations: [
 		FormularioComponent,
-		ProdutoCompraDialogComponent
+		ProdutoCompraDialogComponent,
+		ListaCompraComponent
 	],
 	imports: [
 		CommonModule,
@@ -31,7 +33,8 @@ import { MessagesModule } from 'primeng/messages';
 		ToolbarModule,
 		AutoCompleteModule,
 		MessageModule,
-		MessagesModule
+		MessagesModule,
+		TableModule
 	]
 })
 export class CompraModule { }
