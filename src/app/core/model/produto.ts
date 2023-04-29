@@ -11,7 +11,7 @@ export class Produto {
 	unidadeMedida?: UnidadeMedida;
 
 	toJson(): any {
-		let teste = {
+		let produtoJson = {
 			descricao: this.descricao,
 			marca: this.marca,
 			qtd_estoque: this.quantidadeEstoque,
@@ -19,7 +19,7 @@ export class Produto {
 			tipo_produto: this.tipoProduto?.toJson(),
 			unidade_medida: this.unidadeMedida?.toJson()
 		}
-		return teste
+		return produtoJson
 	}
 
 	static fromJson(json: any): Produto {

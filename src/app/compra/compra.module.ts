@@ -11,6 +11,9 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 
 import { FormularioComponent } from './formulario/formulario.component';
 import { ProdutoCompraDialogComponent } from './produto-compra-dialog/produto-compra-dialog.component';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+
 import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 
 @NgModule({
@@ -29,6 +32,8 @@ import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 		DialogModule,
 		ToolbarModule,
 		AutoCompleteModule,
+		MessageModule,
+		MessagesModule,
 		TableModule
 	]
 })
