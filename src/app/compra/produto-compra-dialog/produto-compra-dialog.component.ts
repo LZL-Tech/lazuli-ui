@@ -42,12 +42,9 @@ export class ProdutoCompraDialogComponent implements OnInit {
 	}
 
 	// TODO: Buscar produtos da API
-	buscarProdutoPorDescricao(event: any) {
-		this.results = this.produtosCadastrados.filter(
-			produto => {
-				return produto.descricao?.toUpperCase().includes(event.query.toUpperCase())
-			}
-		)
+	buscarProdutoPorDescricao(busca: string) {
+		this.produtoService.findByTipoProdutoAndDescricao(1, busca)
+			.subscribe(response => this.results = response)
 	}
 
 	adicionarProdutoComprado() {
