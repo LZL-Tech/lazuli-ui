@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Produto } from 'src/app/core/model/produto';
-import { TipoProduto } from 'src/app/core/model/tipo.produto';
-import { UnidadeMedida } from 'src/app/core/model/unidade.medida';
 import { ProdutoService } from '../produto.service';
 
 @Component({
@@ -18,7 +16,6 @@ export class ListaComponent {
 	ngOnInit(): void {
 		this.produtoService.findAll().subscribe(produtos => {
 			produtos.forEach(produto => this.produtos.push(Produto.fromJson(produto)))
-			console.log(produtos)
 		})
 	}
 }

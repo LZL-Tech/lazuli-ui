@@ -1,19 +1,22 @@
 <h2>Lista de Compras</h2>
 
-<p-table [value]="listaCompra">
+<p-table [value]="listaCompra" [paginator]="true" [totalRecords]="listaCompra.length" [rows]="10" [rowsPerPageOptions]="[5,10,20,50]">
 	<ng-template pTemplate="header">
 		<tr>
-			<th pSortableColumn="IdCompra">
-				# <p-sortIcon field="IdCompra"></p-sortIcon>
+			<th pSortableColumn="idCompra">
+				# <p-sortIcon field="idCompra"></p-sortIcon>
 			</th>
-			<th pSortableColumn="Fornecedor">
+			<th pSortableColumn="fornecedor">
 				Fornecedor <p-sortIcon field="fornecedor"></p-sortIcon>
 			</th>
-			<th pSortableColumn="quantideProduto">
-				Quantidade <p-sortIcon field="quantidadeProduto"></p-sortIcon>
+			<th>
+				Quantidade
 			</th>
-			<th pSortableColumn="gastoProduto">
-				Gasto <p-sortIcon field="gastoProduto"></p-sortIcon>
+			<th>
+				Gasto
+			</th>
+			<th>
+				Data
 			</th>
 		</tr>
 	</ng-template>
@@ -21,8 +24,9 @@
 		<tr>
 			<td>{{ compra.idCompra }}</td>
 			<td>{{ compra.fornecedor }}</td>
-			<td>{{ compra.quantidadeProduto }}</td>
-			<td>{{ compra.gastoProduto }}</td>
+			<td>{{ getTotalProdutos(compra) }}</td>
+			<td>{{ getTotalGasto(compra) | currency:'BRL':'R$ ':'1.2' }}</td>
+			<td>{{ compra.dataCompra }}</td>
 		</tr>
 	</ng-template>
 </p-table>

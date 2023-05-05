@@ -24,13 +24,18 @@ export class Produto {
 
 	static fromJson(json: any): Produto {
 		let produto: Produto = new Produto()
-		produto.idProduto = json.id_produto,
-		produto.descricao = json.descricao,
-		produto.marca = json.marca,
-		produto.preco = json.preco,
-		produto.quantidadeEstoque = json.qtd_estoque
-		produto.tipoProduto = TipoProduto.fromJson(json.tipo_produto)
-		produto.unidadeMedida = UnidadeMedida.fromJson(json.unidade_medida)
+		produto.idProduto = json.id_produto
+		produto.descricao = json.descricao
+		if (json.marca)
+			produto.marca = json.marca
+		if (json.qtd_estoque)
+			produto.quantidadeEstoque = json.qtd_estoque
+		if (json.preco)
+			produto.preco = json.preco
+		if (json.tipo_produto)
+			produto.tipoProduto = TipoProduto.fromJson(json.tipo_produto)
+		if (json.unidade_medida)
+			produto.unidadeMedida = UnidadeMedida.fromJson(json.unidade_medida)
 		return produto
 	}
 }

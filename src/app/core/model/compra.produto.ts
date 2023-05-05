@@ -18,4 +18,14 @@ export class CompraProduto {
 		};
 		return compraProdutoJson
 	}
+
+	static fromJson(json: any): CompraProduto {
+		let produtoComprado = new CompraProduto()
+		produtoComprado.produto = Produto.fromJson(json)
+		produtoComprado.quantidade = json.quantidade
+		produtoComprado.valorTotal = json.vl_total
+		produtoComprado.valorUnidade = json.vl_unidade
+
+		return produtoComprado
+	}
 }

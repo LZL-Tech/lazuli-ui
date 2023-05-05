@@ -44,7 +44,9 @@ export class ProdutoCompraDialogComponent implements OnInit {
 	// TODO: Buscar produtos da API
 	buscarProdutoPorDescricao(busca: string) {
 		this.produtoService.findByTipoProdutoAndDescricao(1, busca)
-			.subscribe(response => this.results = response)
+			.subscribe(response => {
+				this.results = response.map(produto => Produto.fromJson(produto))
+			})
 	}
 
 	adicionarProdutoComprado() {

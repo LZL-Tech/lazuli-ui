@@ -14,4 +14,13 @@ export class Compra {
 			compra_produto: produtosComprados
 		}
 	}
+
+	static fromJson(json: any): Compra {
+		let compra = new Compra()
+		compra.idCompra = json.id_compra
+		compra.dataCompra = json.dt_compra
+		compra.fornecedor = json.fornecedor
+		compra.produtos = json.produto.map((produtoComprado: CompraProduto) => CompraProduto.fromJson(produtoComprado))
+		return compra
+	}
 }
