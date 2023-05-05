@@ -3,7 +3,7 @@
 		<form (ngSubmit)="adicionarProdutoComprado()" #produtoCompradoForm="ngForm" id="produtoCompradoForm" class="p-fluid grid">
 			<div class="md:col-8 col-12 field">
 				<label for="produtoCompraDialog">Produto:</label>
-				<p-autoComplete [(ngModel)]="produtoComprado.produto" name="produtoComprado" [suggestions]="results" (completeMethod)="buscarProdutoPorDescricao($event)"
+				<p-autoComplete [(ngModel)]="produtoComprado.produto" name="produtoComprado" [suggestions]="results" (completeMethod)="buscarProdutoPorDescricao($event.query)"
 					[field]="'descricao'" [appendTo]="'body'" [required]="true">
 				</p-autoComplete>
 			</div>

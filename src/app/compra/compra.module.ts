@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToolbarModule } from 'primeng/toolbar';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { TooltipModule } from "primeng/tooltip";
 
 import { FormularioComponent } from './formulario/formulario.component';
 import { ProdutoCompraDialogComponent } from './produto-compra-dialog/produto-compra-dialog.component';
@@ -34,7 +35,8 @@ import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 		AutoCompleteModule,
 		MessageModule,
 		MessagesModule,
-		TableModule
+		TableModule,
+		TooltipModule,
 	]
 })
 export class CompraModule { }

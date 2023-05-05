@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Compra } from 'src/app/core/model/compra';
 import { CompraService } from '../compra.service';
 import { Message, MessageService } from 'primeng/api';
+import { CompraProduto } from 'src/app/core/model/compra.produto';
 
 @Component({
   selector: 'app-formulario',
@@ -39,6 +40,10 @@ export class FormularioComponent implements OnInit {
 
 	adicionarProdutoComprado(produtoComprado: any) {
 		this.compra.produtos.push(produtoComprado)
+	}
+
+	removerProdutoComprado(produtoComprado: CompraProduto) {
+		this.compra.produtos = this.compra.produtos.filter(produto => produto != produtoComprado)
 	}
 
 }

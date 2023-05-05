@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Compra } from 'src/app/core/model/compra';
+import { CompraService } from '../compra.service';
 
 @Component({
   selector: 'app-lista-compra',
@@ -6,29 +8,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./lista-compra.component.css'],
 })
 export class ListaCompraComponent {
-	listaCompra = [
-    {
-      idCompra: '',
-      fornecedor: 'Atacadão',
-      quantidadeProduto: 20,
-      gastoProduto: 100.00
-    },
-    {
-      idCompra: '',
-      fornecedor: 'Assai',
-			quantidadeProduto: 50,
-      gastoProduto: 250.00
-    },
-    {
-      idCompra: '',
-      fornecedor: 'Sondas',
-      quantidadeProduto: 70,
-      gastoProduto: 600.00
-    },
+	listaCompra: Compra[] = [];
 
-  ];
+  constructor(private compraService: CompraService) {}
 
-  constructor() {}
+  ngOnInit(): void {
+		this.compraService.findAll()
+			.subscribe(compras => {
+				this.listaCompra = compras.map(compra => Compra.fromJson(compra))
+			})
+	}
 
-  ngOnInit(): void {}
+	getTotalProdutos(compra: Compra): number {
+		let total = 0
+		compra.produtos.forEach(produto => {
+			total = total + (produto.quantidade ? produto.quantidade : 0)
+		})
+		return total
+	}
+
+	getTotalGasto(compra: Compra): number {
+		let total = 0
+		compra.produtos.forEach(produto => {
+			total += produto.valorTotal ? produto.valorTotal : 0
+		})
+		return total
+	}
 }
