@@ -1,0 +1,24 @@
+<h2>Lista de Vendas</h2>
+
+<p-table [value]="listaVenda">
+	<ng-template pTemplate="header">
+		<tr>
+			<th pSortableColumn="idVendaProduto">
+				# <p-sortIcon field="idVendaProduto"></p-sortIcon>
+			</th>
+			<th pSortableColumn="vendaProduto">
+				Produto <p-sortIcon field="vendaProduto"></p-sortIcon>
+			</th>
+			<th pSortableColumn="dataVenda">
+				Data <p-sortIcon field="dataVenda"></p-sortIcon>
+			</th>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="body" let-venda>
+		<tr>
+			<td>{{ venda.idVendaProduto }}</td>
+			<td>{{ venda.vendaProduto }}</td>
+			<td>{{ venda.dataVenda }}</td>
+		</tr>
+	</ng-template>
+</p-table>
