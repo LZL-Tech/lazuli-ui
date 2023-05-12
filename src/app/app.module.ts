@@ -10,6 +10,7 @@ import { BarraMenuComponent } from './barra-menu/barra-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ProdutoModule } from './produto/produto.module';
 import { CompraModule } from './compra/compra.module';
+import { ListaVendaModule } from './venda/lista-venda.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { CompraModule } from './compra/compra.module';
     MenubarModule,
 		ProdutoModule,
 		HttpClientModule,
-		CompraModule
+		CompraModule,
+    ListaVendaModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
