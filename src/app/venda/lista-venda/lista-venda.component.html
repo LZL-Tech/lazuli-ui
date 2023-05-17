@@ -1,0 +1,34 @@
+<h2>Lista de Vendas</h2>
+
+<p-table
+	[value]="listaVenda"
+	[paginator]="true"
+	[totalRecords]="listaVenda.length"
+	[rows]="10"
+	[rowsPerPageOptions]="[5, 10, 20, 50]"
+>
+	<ng-template pTemplate="header">
+		<tr>
+			<th pSortableColumn="idVenda">
+				# <p-sortIcon field="idVenda"></p-sortIcon>
+			</th>
+			<th pSortableColumn="Cliente">
+				Cliente <p-sortIcon field="cliente"></p-sortIcon>
+			</th>
+			<th>Quantidade</th>
+			<th>Data</th>
+			<th>Produto</th>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="body" let-venda>
+		<tr>
+			<td>{{ venda.idVenda }}</td>
+			<td>{{ venda.cliente }}</td>
+			<td>{{ venda.dataVenda }}</td>
+			<td>{{ getTotal(venda) }}</td>
+			<td>
+				{{ getTotalProduto(venda) | currency : "BRL" : "R$ " : "1.2" }}
+			</td>
+		</tr>
+	</ng-template>
+</p-table>
