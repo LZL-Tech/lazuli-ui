@@ -10,8 +10,7 @@
 
 			<div class=" md:col-4 col-12 field">
 				<label for="quantidadeVendaDialog">Quantidade:</label>
-				<input type="number" pInputText [(ngModel)]="produtoVendido.quantidade" name="produtoVendaDialog"
-					(ngModelChange)="calcularPrecoTotal()" [required]="true">
+				<input type="number" pInputText [(ngModel)]="produtoVendido.quantidade" name="produtoVendaDialog" [required]="true">
 			</div>
 
 			<div class="col-12 md:col-6 field">
@@ -20,18 +19,7 @@
 					<span class="p-inputgroup-addon">
 						<i class="fa-solid fa-brazilian-real-sign"></i>
 					</span>
-					<input type="number" pInputText [(ngModel)]="produtoVendido.precoUnidade" name="precoUnidadeDialog"
-						(ngModelChange)="calcularPrecoUnitario()" [required]="true">
-				</div>
-			</div>
-
-			<div class="col-12 md:col-6 field">
-				<label for="precoTotalDialog">Preço Total</label>
-				<div class="p-inputgroup">
-					<span class="p-inputgroup-addon">
-						<i class="fa-solid fa-brazilian-real-sign"></i>
-					</span>
-					<input type="number" pInputText [(ngModel)]="produtoVendido.precoUnidade" name="precototalDialog" (ngModelChange)="calcularPrecoUnitario()">
+					<input type="number" pInputText [(ngModel)]="produtoVendido.precoUnidade" name="precoUnidadeDialog" [required]="true">
 				</div>
 			</div>
 		</form>

@@ -11,15 +11,23 @@
 
 
 		<div class="lg:col-4 col-12 field">
-			
+
 			<label for="dataCompra">Data da Venda</label>
 			<div>
-				<p-calendar [(ngModel)]="venda.dtVenda" #dtVenda="ngModel" name="dtVenda" [dateFormat]="'dd/mm/yy'" [showIcon]="true" [maxDate]="dataAtual" [required]="true">
+				<p-calendar [(ngModel)]="venda.dataVenda" #dtVenda="ngModel" name="dtVenda" [dateFormat]="'dd/mm/yy'" [showIcon]="true" [maxDate]="dataAtual" [required]="true">
 				</p-calendar>
 			</div>
 			<small class="p-error block" *ngIf="dtVenda.hasError('required') && dtVenda.touched">
 				*Campo obrigatório
 			</small>
+		</div>
+
+		<div class="lg:col-4 col-12 field">
+			<label for="nome-cliente">Cliente</label>
+			<div>
+				<input pInputText id="nome-cliente" name="nomeCliente" #nomeCliente="ngModel" type="text" [(ngModel)]="venda.nomeCliente"
+					class="ng-touched" placeholder="Josevaldo" autocomplete="off"/>
+			</div>
 		</div>
 
 		<p-table [value]="venda.produtos" class="col-12" [paginator]="true" [rows]="5"
@@ -51,9 +59,6 @@
 					<th>
 						Preço Unitário
 					</th>
-					<th>
-						Preço Total
-					</th>
 					<th></th>
 				</tr>
 			</ng-template>
@@ -71,9 +76,6 @@
 					</td>
 					<td>
 						{{ produtoVendido.precoUnidade | currency:'BRL':'R$ ':'1.2'}}
-					</td>
-					<td>
-						{{ produtoVendido.precoUnidade | currency:'BRL':'R$ ':'1.2' }}
 					</td>
 					<td>
 						<button pButton [icon]="'fa-solid fa-trash'" class="p-button-danger p-button-rounded" pTooltip="Remover" (click)="removerProdutoVendido(produtoVendido)" [tooltipPosition]="'top'"></button>

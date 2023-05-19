@@ -5,10 +5,10 @@ import { Venda } from 'src/app/core/model/venda';
 import { VendaProduto } from 'src/app/core/model/venda.produto';
 
 @Component({
-  selector: 'app-formulario',
-  templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.css'],
-  providers: [MessageService]
+	selector: 'app-formulario',
+	templateUrl: './formulario.component.html',
+	styleUrls: ['./formulario.component.css'],
+	providers: [MessageService]
 })
 export class FormularioComponent implements OnInit {
 	venda: Venda = new Venda()
@@ -17,26 +17,26 @@ export class FormularioComponent implements OnInit {
 	vendaForm: any;
 
 
-  constructor(
-	 private vendaService: VendaService, 
-	 private messageService: MessageService
-  ) { }
+	constructor(
+		private vendaService: VendaService,
+		private messageService: MessageService
+	) { }
 
-  ngOnInit(): void {
-  }
-
-  onSubmit(vendaForm: any) {
-	if (!this.venda.produtos || this.venda.produtos.length === 0) {
-		this.messageService.add({severity: 'warn', summary: 'Ops!', detail: 'É necessário informar ao menos um produto'})
+	ngOnInit(): void {
 	}
 
-	this.vendaService.save(this.venda)
-		.subscribe(response => {
-			this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Compra cadastrada'})
-			this.venda = new Venda()
-			vendaForm.reset()
-		})
-}
+	onSubmit(vendaForm: any) {
+		if (!this.venda.produtos || this.venda.produtos.length === 0) {
+			this.messageService.add({ severity: 'warn', summary: 'Ops!', detail: 'É necessário informar ao menos um produto' })
+		} else {
+			this.vendaService.save(this.venda)
+				.subscribe(response => {
+					this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Compra cadastrada' })
+					this.venda = new Venda()
+					vendaForm.reset()
+				})
+		}
+	}
 
 	adicionarProdutoVendidoDialog() {
 		this.mostrarDialogProduto = true
@@ -47,7 +47,7 @@ export class FormularioComponent implements OnInit {
 	}
 
 	removerProdutoVendido(produtoVendido: VendaProduto) {
-		this.venda.produtos = this.venda.produtos.filter( produto => produto != produtoVendido)
+		this.venda.produtos = this.venda.produtos.filter(produto => produto != produtoVendido)
 	}
 
 }

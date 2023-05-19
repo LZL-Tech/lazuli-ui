@@ -5,20 +5,17 @@ export class VendaProduto {
 	quantidade?: number
 	precoUnidade?: number
 
-    toJson() {
+	toJson() {
 		const vendaProdutoJson = {
-			produto: {
-				id_produto: this.produto?.idProduto,
-				descricao: this.produto?.descricao
-			},
+			id_produto: this.produto?.idProduto,
 			quantidade: this.quantidade,
-			precoUnidade: this.precoUnidade
+			preco_unidade: this.precoUnidade
 		};
 		return vendaProdutoJson
 	}
 
 
-    static fromJson(json: any): VendaProduto {
+	static fromJson(json: any): VendaProduto {
 		let produtoVendido = new VendaProduto()
 		produtoVendido.produto = Produto.fromJson(json)
 		produtoVendido.quantidade = json.quantidade

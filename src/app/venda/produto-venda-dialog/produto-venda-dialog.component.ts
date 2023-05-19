@@ -62,17 +62,4 @@ export class ProdutoVendaDialogComponent implements OnInit {
 		this.produtoVendido = new VendaProduto()
 	}
 
-	calcularPrecoTotal() {
-		if (this.produtoVendido.quantidade && this.produtoVendido.precoUnidade) {
-			this.produtoVendido.precoUnidade = this.produtoVendido.quantidade * this.produtoVendido.precoUnidade
-		}
-	}
-
-	calcularPrecoUnitario() {
-		if (this.produtoVendido.quantidade && this.produtoVendido.precoUnidade) {
-			this.produtoVendido.precoUnidade =  parseFloat((this.produtoVendido.precoUnidade / this.produtoVendido.quantidade).toFixed(2))
-		}
-	}
-
-
 }
