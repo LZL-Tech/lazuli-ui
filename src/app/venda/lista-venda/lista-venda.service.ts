@@ -1,17 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { Venda } from "../core/model/venda";
+import { Venda } from "src/app/core/model/venda";
 
 
-	@Injectable({
-		providedIn: 'root'
-	})
-	export class VendaService {
+@Injectable({
+	providedIn: 'root'
+})
+export class VendaService {
 
-		private readonly url = 'http://localhost:5000/venda'
+	private readonly url = 'http://localhost:5000/venda'
 
-		constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) { }
 
-		findAll(): Observable<Venda[]> {
-			return this.http.get<Venda[]>(this.url);
+	findAll(): Observable<Venda[]> {
+		return this.http.get<Venda[]>(this.url);
+	}
+}

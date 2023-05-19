@@ -13,7 +13,7 @@ const routes: Routes = [
 	{path: 'produto/cadastrar', component: ProdutoFormComponent},
 	{path: 'produto/listar', component: ProdutoListComponent},
 	{path: 'compra/cadastrar', component: CompraFormComponent},
-	{path: 'compra/listar', component: ListaCompraComponent}
+	{path: 'compra/listar', component: ListaCompraComponent},
 	{path: 'venda/listar', component: ListaVendaComponent}
 ]
 
