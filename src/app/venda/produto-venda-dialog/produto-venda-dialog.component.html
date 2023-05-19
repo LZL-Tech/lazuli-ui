@@ -1,0 +1,45 @@
+<p-dialog [header]="'Produto Vendido'" [visible]="visivel" (visibleChange)="alterarVisibilidade()" [maximizable]="true">
+	<ng-template pTemplate="content">
+		<form (ngSubmit)="adicionarProdutoVendido()" #produtoVendidoForm="ngForm" id="produtoVendidoForm" class="p-fluid grid">
+			<div class="md:col-8 col-12 field">
+				<label for="produtoVendaDialog">Produto:</label>
+				<p-autoComplete [(ngModel)]="produtoVendido.produto" name="produtoComprado" [suggestions]="results" (completeMethod)="buscarProdutoPorDescricao($event.query)"
+					[field]="'descricao'" [appendTo]="'body'" [required]="true">
+				</p-autoComplete>
+			</div>
+
+			<div class=" md:col-4 col-12 field">
+				<label for="quantidadeVendaDialog">Quantidade:</label>
+				<input type="number" pInputText [(ngModel)]="produtoVendido.quantidade" name="produtoVendaDialog"
+					(ngModelChange)="calcularPrecoTotal()" [required]="true">
+			</div>
+
+			<div class="col-12 md:col-6 field">
+				<label for="precoUnidadeDialog">Preço Un.</label>
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon">
+						<i class="fa-solid fa-brazilian-real-sign"></i>
+					</span>
+					<input type="number" pInputText [(ngModel)]="produtoVendido.precoUnidade" name="precoUnidadeDialog"
+						(ngModelChange)="calcularPrecoUnitario()" [required]="true">
+				</div>
+			</div>
+
+			<div class="col-12 md:col-6 field">
+				<label for="precoTotalDialog">Preço Total</label>
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon">
+						<i class="fa-solid fa-brazilian-real-sign"></i>
+					</span>
+					<input type="number" pInputText [(ngModel)]="produtoVendido.precoUnidade" name="precototalDialog" (ngModelChange)="calcularPrecoUnitario()">
+				</div>
+			</div>
+		</form>
+	</ng-template>
+
+	<ng-template pTemplate="footer">
+		<p-button [label]="'Cancelar'" [icon]="'fa-solid fa-xmark'" (onClick)="alterarVisibilidade()"></p-button>
+		<!-- TODO: Submiter formulário através do botão Adicionar -->
+		<p-button [label]="'Adicionar'" [icon]="'fa-solid fa-check'" type="submit" (onClick)="adicionarProdutoVendido()"></p-button>
+	</ng-template>
+</p-dialog>
