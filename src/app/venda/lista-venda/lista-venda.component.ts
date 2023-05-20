@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VendaService } from './lista-venda.service';
 import { Venda } from 'src/app/core/model/venda';
+import { VendaProduto } from 'src/app/core/model/venda.produto';
 
 @Component({
 	selector: 'app-lista-venda',
@@ -11,23 +12,19 @@ export class ListaVendaComponent implements OnInit {
 
 	vendas: Venda[] = new Array<Venda>()
 
-	constructor(private vendaService: VendaService) {}
+	constructor(private vendaService: VendaService) { }
 
 	ngOnInit(): void {
 		for (let index = 0; index < 5; index++) {
-			let vendaJson = {
-				id_venda: index,
-				cliente: "Silvana",
-				data_venda: new Date(),
-				vl_total: Math.random()
-			}
-			this.vendas.push(Venda.fromJson(vendaJson))
+			this.vendaService.findAll().subscribe(response => {
+				this.vendas = response
+			})
 		}
 	}
 
 	getTotal(venda: Venda): number {
 		let total = 0;
-		venda.vendaProdutos?.forEach((vendaProduto) => {
+		venda.produtos?.forEach((vendaProduto) => {
 			total = total + (vendaProduto.quantidade ? vendaProduto.quantidade : 0);
 		});
 		return total;
@@ -35,8 +32,8 @@ export class ListaVendaComponent implements OnInit {
 
 	getValorTotalVenda(venda: Venda): number {
 		let total = 0;
-		venda.vendaProdutos?.forEach((vendaProduto) => {
-			total += vendaProduto.valorTotal ? vendaProduto.valorTotal : 0;
+		venda.produtos?.forEach((vendaProduto: VendaProduto) => {
+			total += vendaProduto.precoUnidade ? vendaProduto.precoUnidade : 0;
 		});
 		return total;
 	}

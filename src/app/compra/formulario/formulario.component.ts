@@ -19,19 +19,21 @@ export class FormularioComponent implements OnInit {
   constructor(private compraService: CompraService, private messageService: MessageService) { }
 
   ngOnInit(): void {
+		console.log("TESTE")
   }
 
 	onSubmit(compraForm: any) {
 		if (!this.compra.produtos || this.compra.produtos.length === 0) {
 			this.messageService.add({severity: 'warn', summary: 'Ops!', detail: 'É necessário informar ao menos um produto'})
-		}
+		} else {
 
-		this.compraService.save(this.compra)
-			.subscribe(response => {
-				this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Compra cadastrada'})
-				this.compra = new Compra()
-				compraForm.reset()
-			})
+			this.compraService.save(this.compra)
+				.subscribe(response => {
+					this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Compra cadastrada'})
+					this.compra = new Compra()
+					compraForm.reset()
+				})
+		}
 	}
 
 	adicionarProdutoCompradoDialog() {

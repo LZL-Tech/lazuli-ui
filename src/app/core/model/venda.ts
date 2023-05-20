@@ -1,32 +1,28 @@
-import { VendaProduto } from "./venda.produto";
+import { VendaProduto } from "./venda.produto"
 
 export class Venda {
-	idVenda?: number;
-	cliente?: string;
-	vendaProdutos?: VendaProduto[];
-	dataVenda?: number;
-	totalVenda?: number;
+	idVenda?: number
+	nomeCliente?: string
+	dataVenda?: Date
+	produtos: VendaProduto[] = new Array<VendaProduto>()
 
-	toJson() {
-		const vendaJson = {
+	toJson(): any {
+		let produtosVendidos = this.produtos.map(produto => produto.toJson())
+		return {
 			id_venda: this.idVenda,
-			cliente: this.cliente,
-			data_venda: this.dataVenda,
-			total_venda: this.totalVenda,
-		};
-		return vendaJson;
+			nm_cliente: this.nomeCliente,
+			dt_venda: this.dataVenda,
+			venda_produto: produtosVendidos
+		}
 	}
 
 	static fromJson(json: any): Venda {
-		let venda = new Venda();
-		venda.idVenda = json.id_venda;
-		venda.cliente = json.cliente;
-		venda.dataVenda = json.data_venda;
-		venda.totalVenda = json.vl_total;
-		return venda;
+		let venda = new Venda()
+        venda.idVenda = json.id_venda
+        venda.nomeCliente = json.nm_cliente
+        venda.dataVenda = json.dt_venda
+        venda.produtos = json.produto.map((produtoVendido: VendaProduto) => VendaProduto.fromJson(produtoVendido))
+        return venda
 	}
 
 }
-
-
-

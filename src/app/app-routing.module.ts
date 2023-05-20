@@ -6,6 +6,7 @@ import { FormularioComponent as CompraFormComponent } from './compra/formulario/
 import { HomeComponent } from './home/home.component';
 import { ListaCompraComponent } from './compra/lista-compra/lista-compra.component';
 import { ListaVendaComponent } from './venda/lista-venda/lista-venda.component';
+import { FormularioComponent } from './venda/formulario/formulario.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
 	{path: 'produto/listar', component: ProdutoListComponent},
 	{path: 'compra/cadastrar', component: CompraFormComponent},
 	{path: 'compra/listar', component: ListaCompraComponent},
-	{path: 'venda/listar', component: ListaVendaComponent}
+	{path: 'venda/registrar', component: FormularioComponent}
 ]
 
 
