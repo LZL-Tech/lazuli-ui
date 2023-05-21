@@ -26,13 +26,13 @@
 				{{ venda.idVenda }}
 			</td>
 			<td>
-				{{ venda.cliente }}
+				{{ venda.nomeCliente ? venda.nomeCliente : 'Não informado' }}
 			</td>
 			<td>
-				{{ venda.dataVenda }}
+				{{ venda.dataVenda | date:'dd/MM/yyyy'}}
 			</td>
 			<td>
-				{{ getTotal(venda) }}
+				{{ getQuantidadeTotalProdutos(venda) }}
 			</td>
 			<td>
 				{{ getValorTotalVenda(venda) | currency : "BRL" : "R$ " : "1.2" }}

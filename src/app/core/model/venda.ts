@@ -21,7 +21,7 @@ export class Venda {
         venda.idVenda = json.id_venda
         venda.nomeCliente = json.nm_cliente
         venda.dataVenda = json.dt_venda
-        venda.produtos = json.produto.map((produtoVendido: VendaProduto) => VendaProduto.fromJson(produtoVendido))
+        venda.produtos = json.venda_produto.map((produtoVendido: VendaProduto) => VendaProduto.fromJson(produtoVendido))
         return venda
 	}
 
