@@ -19,19 +19,16 @@ import { MessagesModule } from 'primeng/messages';
 
 import { FormularioComponent } from './formulario/formulario.component';
 import { ProdutoVendaDialogComponent } from './produto-venda-dialog/produto-venda-dialog.component';
-
+import { ListaVendaComponent } from './lista-venda/lista-venda.component';
 
 
 
 @NgModule({
 	declarations: [
     FormularioComponent,
-	ProdutoVendaDialogComponent
-    
-
+		ProdutoVendaDialogComponent,
+		ListaVendaComponent
 ],
-
-
 	imports: [
 		CommonModule,
 		FormsModule,

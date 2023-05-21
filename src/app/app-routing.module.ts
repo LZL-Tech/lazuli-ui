@@ -5,6 +5,7 @@ import { ListaComponent as ProdutoListComponent } from './produto/lista/lista.co
 import { FormularioComponent as CompraFormComponent } from './compra/formulario/formulario.component';
 import { HomeComponent } from './home/home.component';
 import { ListaCompraComponent } from './compra/lista-compra/lista-compra.component';
+import { ListaVendaComponent } from './venda/lista-venda/lista-venda.component';
 import { FormularioComponent } from './venda/formulario/formulario.component';
 
 
@@ -14,8 +15,10 @@ const routes: Routes = [
 	{path: 'produto/listar', component: ProdutoListComponent},
 	{path: 'compra/cadastrar', component: CompraFormComponent},
 	{path: 'compra/listar', component: ListaCompraComponent},
-	{path: 'venda/registrar', component: FormularioComponent}
+	{path: 'venda/registrar', component: FormularioComponent},
+	{path: 'venda/listar', component: ListaVendaComponent},
 ]
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

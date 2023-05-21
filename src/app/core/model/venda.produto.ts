@@ -19,7 +19,7 @@ export class VendaProduto {
 		let produtoVendido = new VendaProduto()
 		produtoVendido.produto = Produto.fromJson(json)
 		produtoVendido.quantidade = json.quantidade
-		produtoVendido.precoUnidade = json.precoUnidade
+		produtoVendido.precoUnidade = json.preco_unidade
 		return produtoVendido
 	}
 }
