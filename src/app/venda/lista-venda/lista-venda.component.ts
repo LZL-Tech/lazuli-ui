@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Venda } from 'src/app/core/model/venda';
 import { VendaProduto } from 'src/app/core/model/venda.produto';
-import { VendaService } from './lista-venda.service';
+import { VendaService } from './venda.service';
 
 @Component({
 	selector: 'app-lista-venda',

@@ -29,8 +29,6 @@ import { ListaVendaComponent } from './lista-venda/lista-venda.component';
 		ProdutoVendaDialogComponent,
 		ListaVendaComponent
 ],
-
-
 	imports: [
 		CommonModule,
 		FormsModule,
