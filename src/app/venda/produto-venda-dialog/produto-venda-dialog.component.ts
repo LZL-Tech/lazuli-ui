@@ -50,7 +50,7 @@ export class ProdutoVendaDialogComponent implements OnInit {
 
 
 	buscarProdutoPorDescricao(busca: string) {
-		this.produtoService.findByTipoProdutoAndDescricao(1, busca)
+		this.produtoService.findByTipoProdutoAndDescricao(2, busca)
 			.subscribe(response => {
 				this.results = response.map(produto => Produto.fromJson(produto))
 			})
