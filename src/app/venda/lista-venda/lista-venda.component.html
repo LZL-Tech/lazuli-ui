@@ -1,23 +1,28 @@
 <h2>Lista de Vendas</h2>
 
-<p-table
-	[value]="vendas"
-	[paginator]="true"
-	[totalRecords]="vendas.length"
-	[rows]="10"
-	[rowsPerPageOptions]="[5, 10, 20, 50]"
->
+<p-table [value]="vendas" [paginator]="true" [totalRecords]="vendas.length" [rows]="10" [rowsPerPageOptions]="[5, 10, 20, 50]">
 	<ng-template pTemplate="header">
 		<tr>
 			<th pSortableColumn="idVenda">
-				# <p-sortIcon field="idVenda"></p-sortIcon>
+				#
+				<p-sortIcon field="idVenda"></p-sortIcon>
 			</th>
 			<th pSortableColumn="cliente">
-				Cliente <p-sortIcon field="cliente"></p-sortIcon>
+				Cliente
+				<p-sortIcon field="cliente"></p-sortIcon>
 			</th>
-			<th>Data</th>
-			<th>Qtd. Produtos</th>
-			<th>Total</th>
+			<th [pSortableColumn]="'dataVenda'">
+				Data
+				<p-sortIcon field="dataVenda"></p-sortIcon>
+			</th>
+			<th [pSortableColumn]="'quantidadeTotalProdutos'">
+				Qtd. Produtos
+				<p-sortIcon field="quantidadeTotalProdutos"></p-sortIcon>
+			</th>
+			<th [pSortableColumn]="'valorTotalVenda'">
+				Total
+				<p-sortIcon field="valorTotalVenda"></p-sortIcon>
+			</th>
 		</tr>
 	</ng-template>
 	<ng-template pTemplate="body" let-venda>
@@ -32,10 +37,10 @@
 				{{ venda.dataVenda | date:'dd/MM/yyyy'}}
 			</td>
 			<td>
-				{{ getQuantidadeTotalProdutos(venda) }}
+				{{ venda.quantidadeTotalProdutos }}
 			</td>
 			<td>
-				{{ getValorTotalVenda(venda) | currency : "BRL" : "R$ " : "1.2" }}
+				{{ venda.valorTotalVenda | currency : "BRL" : "R$ " : "1.2" }}
 			</td>
 		</tr>
 	</ng-template>
