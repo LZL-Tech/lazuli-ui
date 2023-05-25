@@ -14,9 +14,9 @@ export class ListaVendaComponent implements OnInit {
 	constructor(private vendaService: VendaService) { }
 
 	ngOnInit(): void {
-			this.vendaService.findAll().subscribe((response: Venda[]) => {
-				this.vendas = response.map(venda => Venda.fromJson(venda))
-			})
+		this.vendaService.findAll().subscribe((response: Venda[]) => {
+			this.vendas = response.map(venda => Venda.fromJson(venda))
+		})
 	}
 
 }

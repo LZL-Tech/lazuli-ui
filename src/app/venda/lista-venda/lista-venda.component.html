@@ -7,21 +7,25 @@
 				#
 				<p-sortIcon field="idVenda"></p-sortIcon>
 			</th>
-			<th pSortableColumn="cliente">
+			<th pSortableColumn="nomeCliente">
 				Cliente
-				<p-sortIcon field="cliente"></p-sortIcon>
+				<p-sortIcon field="nomeCliente"></p-sortIcon>
+				<p-columnFilter type="text" field="nomeCliente" display="menu"></p-columnFilter>
 			</th>
 			<th [pSortableColumn]="'dataVenda'">
 				Data
 				<p-sortIcon field="dataVenda"></p-sortIcon>
+				<p-columnFilter type="date" field="dataVenda" display="menu"></p-columnFilter>
 			</th>
 			<th [pSortableColumn]="'quantidadeTotalProdutos'">
 				Qtd. Produtos
 				<p-sortIcon field="quantidadeTotalProdutos"></p-sortIcon>
+				<p-columnFilter type="numeric" field="quantidadeTotalProdutos" display="menu"></p-columnFilter>
 			</th>
 			<th [pSortableColumn]="'valorTotalVenda'">
 				Total
 				<p-sortIcon field="valorTotalVenda"></p-sortIcon>
+				<p-columnFilter type="numeric" field="valorTotalVenda" display="menu"></p-columnFilter>
 			</th>
 		</tr>
 	</ng-template>
