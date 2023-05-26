@@ -1,11 +1,16 @@
 <h2>Lista de Vendas</h2>
 
-<p-table [value]="vendas" [paginator]="true" [totalRecords]="vendas.length" [rows]="10" [rowsPerPageOptions]="[5, 10, 20, 50]">
+<p-table #tabelaVendas [value]="vendas" [columns]="cols" [paginator]="true" [totalRecords]="vendas.length" [rows]="10" [rowsPerPageOptions]="[5, 10, 20, 50]">
+	<ng-template pTemplate="caption">
+		<p-button [icon]="'fa-solid fa-file-csv'" pTooltip="Exportar CSV" [tooltipPosition]="'bottom'" (onClick)="tabelaVendas.exportCSV()"></p-button>
+	</ng-template>
+
 	<ng-template pTemplate="header">
 		<tr>
 			<th pSortableColumn="idVenda">
 				#
 				<p-sortIcon field="idVenda"></p-sortIcon>
+				<p-columnFilter type="numeric" field="idVenda" display="menu"></p-columnFilter>
 			</th>
 			<th pSortableColumn="nomeCliente">
 				Cliente

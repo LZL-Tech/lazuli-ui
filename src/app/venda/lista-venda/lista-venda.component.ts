@@ -10,12 +10,21 @@ import { VendaService } from '../venda.service';
 export class ListaVendaComponent implements OnInit {
 
 	vendas: Venda[] = new Array<Venda>()
+	cols: any[] = []
 
 	constructor(private vendaService: VendaService) { }
 
 	ngOnInit(): void {
 		this.vendaService.findAll().subscribe((response: Venda[]) => {
 			this.vendas = response.map(venda => Venda.fromJson(venda))
+
+			this.cols = [
+				{header: '#', field: 'idVenda'},
+				{header: 'Cliente', field: 'nomeCliente'},
+				{header: 'Data', field: 'dataVenda'},
+				{header: 'Qtd. Produtos', field: 'quantidadeTotalProdutos'},
+				{header: 'Total', field: 'valorTotalVenda'},
+			]
 		})
 	}
 
