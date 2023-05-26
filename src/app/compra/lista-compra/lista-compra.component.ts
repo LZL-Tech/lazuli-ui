@@ -8,7 +8,15 @@ import { CompraService } from '../compra.service';
   styleUrls: ['./lista-compra.component.css'],
 })
 export class ListaCompraComponent {
+
 	listaCompra: Compra[] = [];
+	cols: any[] = [
+		{header: '#', field: 'idCompra'},
+		{header: 'Fornecedor', field: 'fornecedor'},
+		{header: 'Quantidade', field: 'quantidadeTotalProdutos'},
+		{header: 'Gasto', field: 'totalGasto'},
+		{header: 'Data', field: 'dataCompra'}
+	]
 
   constructor(private compraService: CompraService) {}
 
@@ -17,21 +25,5 @@ export class ListaCompraComponent {
 			.subscribe(compras => {
 				this.listaCompra = compras.map(compra => Compra.fromJson(compra))
 			})
-	}
-
-	getTotalProdutos(compra: Compra): number {
-		let total = 0
-		compra.produtos.forEach(produto => {
-			total = total + (produto.quantidade ? produto.quantidade : 0)
-		})
-		return total
-	}
-
-	getTotalGasto(compra: Compra): number {
-		let total = 0
-		compra.produtos.forEach(produto => {
-			total += produto.valorTotal ? produto.valorTotal : 0
-		})
-		return total
 	}
 }
