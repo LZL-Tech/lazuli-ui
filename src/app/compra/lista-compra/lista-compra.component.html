@@ -2,7 +2,7 @@
 
 <p-table #tabelaCompra [value]="listaCompra" [paginator]="true" [totalRecords]="listaCompra.length" [rows]="10" [rowsPerPageOptions]="[5,10,20,50]" [columns]="cols">
 	<ng-template pTemplate="caption">
-		<button pButton class="p-button-secondary p-button-rounded" [icon]="'fa-solid fa-file-csv'" pTooltip="Exportar CSV" tooltipPosition="bottom" (onClick)="tabelaCompra.exportCSV()"></button>
+		<button pButton class="p-button-secondary p-button-rounded" [icon]="'fa-solid fa-file-csv'" pTooltip="Exportar CSV" tooltipPosition="bottom" (click)="tabelaCompra.exportCSV()"></button>
 	</ng-template>
 
 	<ng-template pTemplate="header">
