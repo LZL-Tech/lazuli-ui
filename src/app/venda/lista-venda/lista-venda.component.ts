@@ -32,11 +32,12 @@ export class ListaVendaComponent implements OnInit {
 		})
 	}
 
-	exportarPDF() {
+	exportarPDF(vendasFiltradas: Venda[]) {
 		let pdf = new jsPDF()
+		const vendasExportar = vendasFiltradas?? this.vendas;
 		auto.default(pdf, {
 			head: [['ID', 'Cliente', 'Data', 'Qtd. Produtos', 'Total']],
-			body: this.vendas.map(venda => {
+			body: vendasExportar.map(venda => {
 				return [
 					venda.idVenda? venda.idVenda.toString() : '',
 					venda.nomeCliente? venda.nomeCliente.toString() : '',
