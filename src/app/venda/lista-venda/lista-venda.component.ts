@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { saveAs } from "file-saver";
-import jsPDF from 'jspdf';
 import { Venda } from 'src/app/core/model/venda';
 import * as xlsx from "xlsx";
 import { VendaService } from '../venda.service';
+import jsPDF from 'jspdf';
+import * as auto from "jspdf-autotable";
 
 @Component({
 	selector: 'app-lista-venda',
@@ -32,7 +33,19 @@ export class ListaVendaComponent implements OnInit {
 	}
 
 	exportarPDF() {
-		const pdf = new jsPDF()
+		let pdf = new jsPDF()
+		auto.default(pdf, {
+			head: [['ID', 'Cliente', 'Data', 'Qtd. Produtos', 'Total']],
+			body: this.vendas.map(venda => {
+				return [
+					venda.idVenda? venda.idVenda.toString() : '',
+					venda.nomeCliente? venda.nomeCliente.toString() : '',
+					venda.dataVenda? venda.dataVenda.toLocaleDateString() : '',
+					venda.quantidadeTotalProdutos? venda.quantidadeTotalProdutos.toString() : '',
+					venda.valorTotalVenda? 'R$ '+venda.valorTotalVenda.toFixed(2): '',
+				]
+			})
+		})
 		pdf.save('vendas')
 	}
 

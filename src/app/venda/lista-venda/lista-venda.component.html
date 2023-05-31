@@ -44,7 +44,7 @@
 				{{ venda.idVenda }}
 			</td>
 			<td [ngStyle]="{'color': !venda.nomeCliente ? 'grey': ''}">
-				{{ venda.nomeCliente ? venda.nomeCliente : 'Não informado' }}
+				{{ venda.nomeCliente?? 'Não informado' }}
 			</td>
 			<td>
 				{{ venda.dataVenda | date:'dd/MM/yyyy'}}
