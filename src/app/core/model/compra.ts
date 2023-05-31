@@ -32,12 +32,11 @@ export class Compra {
 	}
 
 	static fromJson(json: any): Compra {
-		let dataSplit = json.dt_compra.split('/')
 
 		let compra = new Compra()
 		compra.idCompra = json.id_compra
 		compra.fornecedor = json.fornecedor
-		compra.dataCompra = new Date(dataSplit[2], dataSplit[1], dataSplit[0])
+		compra.dataCompra = new Date(json.dt_compra.replace('-','/'))
 		compra.produtos = json.produto.map((produtoComprado: CompraProduto) => CompraProduto.fromJson(produtoComprado))
 		return compra
 	}

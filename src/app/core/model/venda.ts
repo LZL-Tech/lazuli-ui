@@ -34,11 +34,13 @@ export class Venda {
 
 	static fromJson(json: any): Venda {
 		let venda = new Venda()
-        venda.idVenda = json.id_venda
-        venda.nomeCliente = json.nm_cliente
-        venda.dataVenda = new Date(json.dt_venda.replace(" GMT", ""))
-        venda.produtos = json.venda_produto.map((produtoVendido: VendaProduto) => VendaProduto.fromJson(produtoVendido))
-        return venda
+
+		venda.idVenda = json.id_venda
+		venda.nomeCliente = json.nm_cliente
+		venda.dataVenda = new Date(json.dt_venda.replace('-','/'))
+		venda.produtos = json.venda_produto.map((produtoVendido: VendaProduto) => VendaProduto.fromJson(produtoVendido))
+
+		return venda
 	}
 
 }

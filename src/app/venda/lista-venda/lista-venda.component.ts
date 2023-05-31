@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { saveAs } from "file-saver";
+import jsPDF from 'jspdf';
 import { Venda } from 'src/app/core/model/venda';
+import * as xlsx from "xlsx";
 import { VendaService } from '../venda.service';
 
 @Component({
@@ -28,4 +31,31 @@ export class ListaVendaComponent implements OnInit {
 		})
 	}
 
+	exportarPDF() {
+		const pdf = new jsPDF()
+		pdf.save('vendas')
+	}
+
+	exportarExcel() {
+		let vendasExcel = this.converterVendasParaExcel(this.vendas)
+		const worksheet = xlsx.utils.json_to_sheet(vendasExcel);
+		const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+		const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+		const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+		let data = new Blob([excelBuffer], {type: EXCEL_TYPE})
+		saveAs(data, `vendas`)
+	}
+
+
+	private converterVendasParaExcel(vendas: Venda[]) {
+		return vendas.map(venda => {
+			return {
+				"ID": venda.idVenda,
+				"Cliente": venda.nomeCliente,
+				"Data": venda.dataVenda,
+				"Qtd. Produtos": venda.quantidadeTotalProdutos,
+				"Total": venda.valorTotalVenda
+			};
+		});
+	}
 }

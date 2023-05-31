@@ -17,7 +17,7 @@ export class VendaProduto {
 
 	static fromJson(json: any): VendaProduto {
 		let produtoVendido = new VendaProduto()
-		produtoVendido.produto = Produto.fromJson(json)
+		produtoVendido.produto = Produto.fromJson(json.produto)
 		produtoVendido.quantidade = json.quantidade
 		produtoVendido.precoUnidade = json.preco_unidade
 		return produtoVendido

@@ -18,9 +18,7 @@ export class FormularioComponent implements OnInit {
 
   constructor(private compraService: CompraService, private messageService: MessageService) { }
 
-  ngOnInit(): void {
-		console.log("TESTE")
-  }
+  ngOnInit(): void { }
 
 	onSubmit(compraForm: any) {
 		if (!this.compra.produtos || this.compra.produtos.length === 0) {
