@@ -22,6 +22,18 @@ export class Produto {
 		return produtoJson
 	}
 
+	toSimpleJson(): any {
+		let produtoJson = {
+			descricao: this.descricao,
+			marca: this.marca,
+			qtd_estoque: this.quantidadeEstoque,
+			preco: this.preco,
+			id_tipo_produto: this.tipoProduto?.idTipoProduto,
+			id_unidade_medida: this.unidadeMedida?.idUnidadeMedida
+		}
+		return produtoJson
+	}
+
 	static fromJson(json: any): Produto {
 		let produto: Produto = new Produto()
 		produto.idProduto = json.id_produto

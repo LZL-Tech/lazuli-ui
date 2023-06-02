@@ -1,4 +1,9 @@
-<div>
+<p-blockUI [blocked]="bloquerTela" [baseZIndex]="-100" target="">
+	<p-progressSpinner></p-progressSpinner>
+</p-blockUI>
+
+<div *ngIf="!bloquerTela">
+
 	<div class="col-12">
 		<p-messages [(value)]="mensagens"></p-messages>
 	</div>

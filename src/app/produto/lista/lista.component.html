@@ -7,20 +7,25 @@
 				# <p-sortIcon field="idProduto"></p-sortIcon>
 			</th>
 			<th pSortableColumn="descricao">
-				Descrição <p-sortIcon field="descricao"></p-sortIcon>
+				Descrição
+				<p-sortIcon field="descricao"></p-sortIcon>
 			</th>
 			<th>
 				Marca
 			</th>
 			<th pSortableColumn="preco">
-				Preco <p-sortIcon field="preco"></p-sortIcon>
+				Preco
+				<p-sortIcon field="preco"></p-sortIcon>
 			</th>
 			<th pSortableColumn="quantidadeEstoque">
-				Quantidade <p-sortIcon field="quantidadeEstoque"></p-sortIcon>
+				Quantidade
+				<p-sortIcon field="quantidadeEstoque"></p-sortIcon>
 			</th>
 			<th pSortableColumn="tipoProduto.descricao">
-				Tipo <p-sortIcon field="tipoProduto.descricao"></p-sortIcon>
+				Tipo
+				<p-sortIcon field="tipoProduto.descricao"></p-sortIcon>
 			</th>
+			<th></th>
 		</tr>
 	</ng-template>
 	<ng-template pTemplate="body" let-produto>
@@ -31,6 +36,9 @@
 			<td>{{ produto.preco }}</td>
 			<td>{{ produto.quantidadeEstoque }}</td>
 			<td>{{ produto.tipoProduto.descricao }}</td>
+			<td>
+				<button pButton class="p-button-warning p-button-rounded" [icon]="'fa-solid fa-pen'" pTooltip="Editar" tooltipPosition="left" (click)="editarProduto(produto)"></button>
+			</td>
 		</tr>
 	</ng-template>
 </p-table>

@@ -24,6 +24,10 @@ export class ProdutoService {
 		return this.http.post(this.url, produto.toJson(), {observe: 'response'})
 	}
 
+	update(produto: Produto): Observable<any> {
+		return this.http.put(`${this.url}/${produto.idProduto}`, produto.toSimpleJson(), {observe: 'response'})
+	}
+
 	findByTipoProdutoAndDescricao(idTipoProduto: number, descricao: string): Observable<Produto[]> {
 		return this.http.get<Produto[]>(
 			`${this.url}/filter`,

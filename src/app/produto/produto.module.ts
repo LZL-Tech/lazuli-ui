@@ -10,6 +10,9 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 
+import { BlockUIModule } from 'primeng/blockui';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TooltipModule } from 'primeng/tooltip';
 import { FormularioComponent } from './formulario/formulario.component';
 import { ListaComponent } from './lista/lista.component';
 
@@ -24,8 +27,11 @@ import { ListaComponent } from './lista/lista.component';
 		DropdownModule,
 		ButtonModule,
 		TableModule,
+		TooltipModule,
 		MessageModule,
-		MessagesModule
+		MessagesModule,
+		BlockUIModule,
+		ProgressSpinnerModule,
   ],
 	providers: [
 	]
