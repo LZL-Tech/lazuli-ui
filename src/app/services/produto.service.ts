@@ -37,4 +37,9 @@ export class ProdutoService {
 			}
 		)
 	}
+
+	update(id: number, produto: Produto): Observable<any> 
+	{
+		return this.http.put(`${this.url}/${id}`, produto.toJson(), {observe: 'response'})
+	}
 }

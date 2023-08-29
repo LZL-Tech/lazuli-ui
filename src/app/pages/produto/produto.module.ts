@@ -12,6 +12,8 @@ import { TableModule } from 'primeng/table';
 
 import { FormularioComponent } from './formulario/formulario.component';
 import { ListaComponent } from './lista/lista.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+
 
 @NgModule({
 	declarations: [FormularioComponent, ListaComponent],
@@ -25,7 +27,8 @@ import { ListaComponent } from './lista/lista.component';
 		ButtonModule,
 		TableModule,
 		MessageModule,
-		MessagesModule
+		MessagesModule,
+		AppRoutingModule
   ],
 	providers: [
 	]

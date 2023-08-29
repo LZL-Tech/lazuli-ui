@@ -13,6 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
 	{path: '', component: HomeComponent},
 	{path: 'produto/cadastrar', component: ProdutoFormComponent},
+	{path: 'produto/atualizar/:id', component: ProdutoFormComponent},
 	{path: 'produto/listar', component: ProdutoListComponent},
 	{path: 'compra/cadastrar', component: CompraFormComponent},
 	{path: 'compra/listar', component: ListaCompraComponent},
