@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MenubarModule } from 'primeng/menubar';
-import { BarraMenuComponent } from './barra-menu/barra-menu.component';
-import { HomeComponent } from './home/home.component';
-import { ProdutoModule } from './produto/produto.module';
-import { CompraModule } from './compra/compra.module';
-import { VendaModule } from './venda/venda.module';
+import { BarraMenuComponent } from './components/barra-menu/barra-menu.component';
+
+import { ProdutoModule } from './pages/produto/produto.module';
+import { HomeComponent } from './pages/home/home.component';
+import { CompraModule } from './pages/compra/compra.module';
+import { VendaModule } from './pages/venda/venda.module';
+
 
 @NgModule({
 	declarations: [
