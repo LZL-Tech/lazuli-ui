@@ -27,4 +27,17 @@ export class ListaComponent {
 			produtos.forEach(produto => this.produtos.push(Produto.fromJson(produto)))
 		})
 	}
+
+	protected delete(produto: Produto): void
+	{
+		this.produtoService.delete(produto?.idProduto ?? 0).subscribe({
+			next: (resposta) => {
+				this.listAll();
+				this.messageService.add({severity: "success", summary: "Sucesso", detail: `Produto ${produto.descricao} deletado com sucesso`})			
+			},
+			error: (erro) => {
+			  this.messageService.add({ severity: 'error', summary: 'Error', detail:  `Ocorreu um erro ao tentar deletar o produto`})
+			}
+		}); 
+	}
 }

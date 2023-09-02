@@ -36,6 +36,7 @@
 			<td>{{ produto.tipoProduto.descricao }}</td>
 			<td>
 				<button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['/produto/atualizar', produto.idProduto]"></button>
+				<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(produto)"></button>
 			</td>
 		</tr>
 	</ng-template>

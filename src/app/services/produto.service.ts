@@ -42,4 +42,9 @@ export class ProdutoService {
 	{
 		return this.http.put(`${this.url}/${id}`, produto.toJson(), {observe: 'response'})
 	}
+
+	delete(id: number): Observable<any> 
+	{
+	  return this.http.delete(`${this.url}/${id}`);
+	}
 }
