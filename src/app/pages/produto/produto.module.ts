@@ -10,9 +10,9 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormularioComponent } from './formulario/formulario.component';
 import { ListaComponent } from './lista/lista.component';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
 @NgModule({

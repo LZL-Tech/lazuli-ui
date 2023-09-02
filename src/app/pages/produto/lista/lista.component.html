@@ -1,42 +1,44 @@
-<h2>Listagem de Produtos</h2>
-<div class="col-12">
-	<p-messages [(value)]="mensagens"></p-messages>
+<div #divListagemProduto id="div-listagem-produto">
+	<h2>Listagem de Produtos</h2>
+	<div class="col-12">
+		<p-messages [(value)]="mensagens"></p-messages>
+	</div>
+	<p-table [value]="produtos" #tabelaProdutos [loading]="isLoading">
+		<ng-template pTemplate="header">
+			<tr>
+				<th pSortableColumn="idProduto">
+					# <p-sortIcon field="idProduto"></p-sortIcon>
+				</th>
+				<th pSortableColumn="descricao">
+					Descrição <p-sortIcon field="descricao"></p-sortIcon>
+				</th>
+				<th>
+					Marca
+				</th>
+				<th pSortableColumn="preco">
+					Preco <p-sortIcon field="preco"></p-sortIcon>
+				</th>
+				<th pSortableColumn="quantidadeEstoque">
+					Quantidade <p-sortIcon field="quantidadeEstoque"></p-sortIcon>
+				</th>
+				<th pSortableColumn="tipoProduto.descricao">
+					Tipo <p-sortIcon field="tipoProduto.descricao"></p-sortIcon>
+				</th>
+				<th style="width: 10rem"></th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-produto>
+			<tr>
+				<td>{{ produto.idProduto }}</td>
+				<td>{{ produto.descricao }}</td>
+				<td>{{ produto.marca }}</td>
+				<td>{{ produto.preco }}</td>
+				<td>{{ produto.quantidadeEstoque }}</td>
+				<td>{{ produto.tipoProduto.descricao }}</td>
+				<td>
+					<button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['/produto/atualizar', produto.idProduto]"></button>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
 </div>
-<p-table [value]="produtos">
-	<ng-template pTemplate="header">
-		<tr>
-			<th pSortableColumn="idProduto">
-				# <p-sortIcon field="idProduto"></p-sortIcon>
-			</th>
-			<th pSortableColumn="descricao">
-				Descrição <p-sortIcon field="descricao"></p-sortIcon>
-			</th>
-			<th>
-				Marca
-			</th>
-			<th pSortableColumn="preco">
-				Preco <p-sortIcon field="preco"></p-sortIcon>
-			</th>
-			<th pSortableColumn="quantidadeEstoque">
-				Quantidade <p-sortIcon field="quantidadeEstoque"></p-sortIcon>
-			</th>
-			<th pSortableColumn="tipoProduto.descricao">
-				Tipo <p-sortIcon field="tipoProduto.descricao"></p-sortIcon>
-			</th>
-			<th style="width: 10rem"></th>
-		</tr>
-	</ng-template>
-	<ng-template pTemplate="body" let-produto>
-		<tr>
-			<td>{{ produto.idProduto }}</td>
-			<td>{{ produto.descricao }}</td>
-			<td>{{ produto.marca }}</td>
-			<td>{{ produto.preco }}</td>
-			<td>{{ produto.quantidadeEstoque }}</td>
-			<td>{{ produto.tipoProduto.descricao }}</td>
-			<td>
-				<button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['/produto/atualizar', produto.idProduto]"></button>
-			</td>
-		</tr>
-	</ng-template>
-</p-table>
