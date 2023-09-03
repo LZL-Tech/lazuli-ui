@@ -13,23 +13,44 @@ import { Venda } from 'src/app/models/venda';
 })
 export class ListaVendaComponent implements OnInit {
 
-	vendas: Venda[] = new Array<Venda>()
-	cols: any[] = []
+	vendas: Venda[] = new Array<Venda>();
+
+	cols: any[] = [];
+	isLoading: boolean = false;
 
 	constructor(private vendaService: VendaService) { }
 
 	ngOnInit(): void {
-		this.vendaService.findAll().subscribe((response: Venda[]) => {
-			this.vendas = response.map(venda => Venda.fromJson(venda))
+		this.isLoading = true;
 
+		this.getVendas().then((vendas) => {
+			this.vendas = vendas;
 			this.cols = [
 				{header: '#', field: 'idVenda'},
 				{header: 'Cliente', field: 'nomeCliente'},
 				{header: 'Data', field: 'dataVenda'},
 				{header: 'Qtd. Produtos', field: 'quantidadeTotalProdutos'},
 				{header: 'Total', field: 'valorTotalVenda'},
-			]
-		})
+			];
+			this.isLoading = false;
+		}).catch((error) => {
+			console.log(error);
+			this.isLoading = false;
+		});
+	}
+
+	async getVendas(): Promise<Venda[]> {
+		let vendaPromise = new Promise<Venda[]>((resolve, reject) => {
+			this.vendaService.findAll().subscribe({
+				next: (response) => {
+					resolve(response.map(venda => Venda.fromJson(venda)))
+				},
+				error: (error) => {
+					reject(error)
+				}
+			});
+		});
+		return vendaPromise;
 	}
 
 	exportarPDF(vendasFiltradas: Venda[]) {
