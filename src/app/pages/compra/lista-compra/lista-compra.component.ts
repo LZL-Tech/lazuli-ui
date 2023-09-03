@@ -21,7 +21,6 @@ export class ListaCompraComponent {
 
 	compras: Compra[] = [];
 
-	messages: Message[] = [];
 	isLoading: boolean = false;
 	cols: any[] = [
 		{header: '#', field: 'idCompra'},
@@ -40,7 +39,7 @@ export class ListaCompraComponent {
 			this.compras = compras;
 			this.isLoading = false;
 		}).catch((error) => {
-			this.messageService.add({severity:'error', summary: 'Erro', detail: 'Erro ao consultar compras'});
+			this.messageService.add({severity:'error', summary: 'Ops!', detail: 'Ocorreu um erro ao consultar compras'});
 			console.error(error);
 		});
 	}

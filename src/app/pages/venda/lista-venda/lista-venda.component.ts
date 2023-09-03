@@ -5,11 +5,13 @@ import jsPDF from 'jspdf';
 import * as auto from "jspdf-autotable";
 import { VendaService } from 'src/app/services/venda.service';
 import { Venda } from 'src/app/models/venda';
+import { MessageService } from 'primeng/api';
 
 @Component({
 	selector: 'app-lista-venda',
 	templateUrl: './lista-venda.component.html',
 	styleUrls: ['./lista-venda.component.css'],
+	providers: [MessageService]
 })
 export class ListaVendaComponent implements OnInit {
 
@@ -24,7 +26,7 @@ export class ListaVendaComponent implements OnInit {
 		{header: 'Total', field: 'valorTotalVenda'},
 	];
 
-	constructor(private vendaService: VendaService) { }
+	constructor(private vendaService: VendaService, private messageService: MessageService) { }
 
 	ngOnInit(): void {
 		this.isLoading = true;
@@ -33,6 +35,7 @@ export class ListaVendaComponent implements OnInit {
 			this.vendas = vendas;
 			this.isLoading = false;
 		}).catch((error) => {
+			this.messageService.add({severity:'error', summary: 'Ops!', detail: 'Ocorreu um erro ao consultar vendas'});
 			console.log(error);
 			this.isLoading = false;
 		});
