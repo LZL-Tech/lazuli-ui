@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Message, MessageService } from 'primeng/api';
 import { firstValueFrom } from 'rxjs';
@@ -24,15 +25,28 @@ export class ListaComponent {
 		this.getProdutos().then(produtos => {
 			this.produtos = produtos;
 			this.isLoading = false;
-		})
+		}).catch(error => {
+			console.error(error);
+			this.messageService.add({severity:'error', summary:'Ops!', detail: 'Ocorreu um erro ao consultar os produtos'});
+			this.isLoading = false;
+		});
 	}
 
 	private async getProdutos() : Promise<Produto[]> {
-		let produtos = []
-		let response = await firstValueFrom(this.produtoService.findAll())
-		for (let produto of response) {
-			produtos.push(Produto.fromJson(produto));
-		}
-		return produtos;
+		let produtos: Produto[] = [];
+		let promise = new Promise<Produto[]>((resolve, reject) => {
+			this.produtoService.findAll().subscribe({
+				next: (response) => {
+					for (let produto of response) {
+						produtos.push(Produto.fromJson(produto));
+					}
+					resolve(produtos);
+				},
+				error: (error) => {
+					reject(error);
+				}
+			});
+		});
+		return promise;
 	}
 }
