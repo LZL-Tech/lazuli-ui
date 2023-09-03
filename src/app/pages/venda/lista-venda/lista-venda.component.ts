@@ -15,8 +15,14 @@ export class ListaVendaComponent implements OnInit {
 
 	vendas: Venda[] = new Array<Venda>();
 
-	cols: any[] = [];
 	isLoading: boolean = false;
+	cols = [
+		{header: '#', field: 'idVenda'},
+		{header: 'Cliente', field: 'nomeCliente'},
+		{header: 'Data', field: 'dataVenda'},
+		{header: 'Qtd. Produtos', field: 'quantidadeTotalProdutos'},
+		{header: 'Total', field: 'valorTotalVenda'},
+	];
 
 	constructor(private vendaService: VendaService) { }
 
@@ -25,13 +31,6 @@ export class ListaVendaComponent implements OnInit {
 
 		this.getVendas().then((vendas) => {
 			this.vendas = vendas;
-			this.cols = [
-				{header: '#', field: 'idVenda'},
-				{header: 'Cliente', field: 'nomeCliente'},
-				{header: 'Data', field: 'dataVenda'},
-				{header: 'Qtd. Produtos', field: 'quantidadeTotalProdutos'},
-				{header: 'Total', field: 'valorTotalVenda'},
-			];
 			this.isLoading = false;
 		}).catch((error) => {
 			console.log(error);
