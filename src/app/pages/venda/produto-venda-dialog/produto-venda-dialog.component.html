@@ -1,4 +1,4 @@
-<p-dialog [header]="'Produto Vendido'" [visible]="visivel" (visibleChange)="alterarVisibilidade()" [maximizable]="true">
+<p-dialog [header]="'Produto Vendido'" [visible]="visivel" (visibleChange)="alterarVisibilidade()" [maximizable]="true" #dialogProdutoVenda>
 	<ng-template pTemplate="content">
 		<form (ngSubmit)="adicionarProdutoVendido()" #produtoVendidoForm="ngForm" id="produtoVendidoForm" class="p-fluid grid">
 			<div class="md:col-8 col-12 field">

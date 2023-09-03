@@ -5,31 +5,54 @@ import jsPDF from 'jspdf';
 import * as auto from "jspdf-autotable";
 import { VendaService } from 'src/app/services/venda.service';
 import { Venda } from 'src/app/models/venda';
+import { MessageService } from 'primeng/api';
 
 @Component({
 	selector: 'app-lista-venda',
 	templateUrl: './lista-venda.component.html',
 	styleUrls: ['./lista-venda.component.css'],
+	providers: [MessageService]
 })
 export class ListaVendaComponent implements OnInit {
 
-	vendas: Venda[] = new Array<Venda>()
-	cols: any[] = []
+	vendas: Venda[] = new Array<Venda>();
 
-	constructor(private vendaService: VendaService) { }
+	isLoading: boolean = false;
+	cols = [
+		{header: '#', field: 'idVenda'},
+		{header: 'Cliente', field: 'nomeCliente'},
+		{header: 'Data', field: 'dataVenda'},
+		{header: 'Qtd. Produtos', field: 'quantidadeTotalProdutos'},
+		{header: 'Total', field: 'valorTotalVenda'},
+	];
+
+	constructor(private vendaService: VendaService, private messageService: MessageService) { }
 
 	ngOnInit(): void {
-		this.vendaService.findAll().subscribe((response: Venda[]) => {
-			this.vendas = response.map(venda => Venda.fromJson(venda))
+		this.isLoading = true;
 
-			this.cols = [
-				{header: '#', field: 'idVenda'},
-				{header: 'Cliente', field: 'nomeCliente'},
-				{header: 'Data', field: 'dataVenda'},
-				{header: 'Qtd. Produtos', field: 'quantidadeTotalProdutos'},
-				{header: 'Total', field: 'valorTotalVenda'},
-			]
-		})
+		this.getVendas().then((vendas) => {
+			this.vendas = vendas;
+			this.isLoading = false;
+		}).catch((error) => {
+			this.messageService.add({severity:'error', summary: 'Ops!', detail: 'Ocorreu um erro ao consultar vendas'});
+			console.log(error);
+			this.isLoading = false;
+		});
+	}
+
+	async getVendas(): Promise<Venda[]> {
+		let vendaPromise = new Promise<Venda[]>((resolve, reject) => {
+			this.vendaService.findAll().subscribe({
+				next: (response) => {
+					resolve(response.map(venda => Venda.fromJson(venda)))
+				},
+				error: (error) => {
+					reject(error)
+				}
+			});
+		});
+		return vendaPromise;
 	}
 
 	exportarPDF(vendasFiltradas: Venda[]) {
