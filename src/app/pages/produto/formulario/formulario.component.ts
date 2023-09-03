@@ -69,7 +69,7 @@ export class FormularioComponent implements OnInit {
 		if (this.idProduto) {
 			this.edit(this.produto);
 		} else {
-			this.produtoService.save(this.produto.toJson()).subscribe(response => {
+			this.produtoService.save(this.produto).subscribe(response => {
 				if (response?.status === 201) {
 					this.messageService.add({ severity: "success", summary: "Sucesso", detail: "Produto salvo" })
 					produtoForm.reset()
