@@ -1,7 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Message, MessageService } from 'primeng/api';
-import { firstValueFrom } from 'rxjs';
 import { Produto } from 'src/app/models/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
 

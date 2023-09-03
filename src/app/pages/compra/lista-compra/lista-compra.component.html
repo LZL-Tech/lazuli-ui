@@ -1,3 +1,5 @@
+<p-messages [(value)]="messages"></p-messages>
+
 <h2>Lista de Compras</h2>
 
 <p-table #tabelaCompra [value]="compras" [paginator]="true" [totalRecords]="compras.length" [rows]="10" [rowsPerPageOptions]="[5,10,20,50]" [columns]="cols">
@@ -7,7 +9,7 @@
 			<button pButton class="col-4 p-button-danger p-button-rounded" [icon]="'fa-solid fa-file-pdf'" pTooltip="Exportar PDF" [tooltipPosition]="'bottom'" (click)="exportarPDF(tabelaCompra.filteredValue)"></button>
 			<button pButton class="col-4 p-button-success p-button-rounded" [icon]="'fa-solid fa-file-excel'" pTooltip="Exportar Excel" [tooltipPosition]="'bottom'" (click)="exportarExcel()"></button>
 		</div>
-</ng-template>
+	</ng-template>
 
 	<ng-template pTemplate="header">
 		<tr>
