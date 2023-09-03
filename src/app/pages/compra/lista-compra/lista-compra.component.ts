@@ -41,6 +41,7 @@ export class ListaCompraComponent {
 		}).catch((error) => {
 			this.messageService.add({severity:'error', summary: 'Ops!', detail: 'Ocorreu um erro ao consultar compras'});
 			console.error(error);
+			this.isLoading = false;
 		});
 	}
 
