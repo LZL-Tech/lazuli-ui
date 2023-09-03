@@ -1,6 +1,8 @@
+import { TipoProdutoEnum } from "../enum/tipo.produto.enum";
+
 export class TipoProduto {
 	idTipoProduto?: number;
-	descricao?: string;
+	descricao?: TipoProdutoEnum;
 
 	toJson(): any {
 		return {

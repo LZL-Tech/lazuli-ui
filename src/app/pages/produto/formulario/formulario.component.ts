@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
+import { TipoProdutoEnum } from 'src/app/enum/tipo.produto.enum';
 import { Produto } from 'src/app/models/produto';
 import { TipoProduto } from 'src/app/models/tipo.produto';
 import { UnidadeMedida } from 'src/app/models/unidade.medida';
@@ -99,7 +100,7 @@ export class FormularioComponent implements OnInit {
 	}
 
 	isProdutoIngrediente(): boolean {
-		return this.produto.tipoProduto?.descricao?.toUpperCase() === 'INGREDIENTE';
+		return this.produto.tipoProduto?.descricao?.toUpperCase() === TipoProdutoEnum.INGREDIENTE.toUpperCase();
 	}
 
 	private getProdutoById(id: number): Promise<Produto> {
