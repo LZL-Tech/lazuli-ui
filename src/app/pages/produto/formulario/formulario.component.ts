@@ -48,17 +48,29 @@ export class FormularioComponent implements OnInit {
 			this.route.params.subscribe((params) => {
 				if (params['id']) {
 					this.idProduto = params['id'];
-					this.find(this.idProduto);
 					this.title = "Editar produto";
+
+					this.getProdutoById(this.idProduto)
+						.then((produto) => {
+							this.produto = produto;
+							this.isLoading = false;
+						})
+						.catch((error) => {
+							console.error(error);
+							this.messageService.add({
+								severity: 'error',
+								summary: 'Ops!',
+								detail: `Ocorreu um erro ao consultar os dados do produto`
+							});
+						});
 				} else {
 					this.title = "Cadastrar produto";
+					this.isLoading = false;
 				}
-
-				this.isLoading = false;
 			});
 		}).catch((error) => {
 			console.error(error);
-			this.messageService.add({severity: 'error', summary: 'Ops!', detail: 'Ocorreu um erro'});
+			this.messageService.add({ severity: 'error', summary: 'Ops!', detail: 'Ocorreu um erro' });
 
 			this.isLoading = false;
 		});
@@ -90,10 +102,18 @@ export class FormularioComponent implements OnInit {
 		return this.produto.tipoProduto?.descricao?.toUpperCase() === 'INGREDIENTE';
 	}
 
-	private find(id: number): void {
-		this.produtoService.findById(id).subscribe(produto => {
-			this.produto = Produto.fromJson(produto);
-		})
+	private getProdutoById(id: number): Promise<Produto> {
+		let produtoPromise = new Promise<Produto>((resolve, reject) => {
+			this.produtoService.findById(id).subscribe({
+				next: (produto) => {
+					resolve(Produto.fromJson(produto));
+				},
+				error: (erro) => {
+					reject(erro);
+				}
+			})
+		});
+		return produtoPromise;
 	}
 
 	protected edit(produto: Produto): void {

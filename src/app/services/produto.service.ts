@@ -6,13 +6,13 @@ import { Produto } from "../models/produto";
 
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class ProdutoService {
 
-  constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) { }
 
-  private readonly url = `${environment.apiUrl}/produto`
+	private readonly url = `${environment.apiUrl}/produto`
 
 	findAll(): Observable<Produto[]> {
 		return this.http.get<Produto[]>(this.url)
@@ -23,7 +23,7 @@ export class ProdutoService {
 	}
 
 	save(produto: Produto): Observable<any> {
-		return this.http.post(this.url, produto.toJson(), {observe: 'response'})
+		return this.http.post(this.url, produto.toJson(), { observe: 'response' })
 	}
 
 	findByTipoProdutoAndDescricao(idTipoProduto: number, descricao: string): Observable<Produto[]> {
@@ -38,8 +38,7 @@ export class ProdutoService {
 		)
 	}
 
-	update(id: number, produto: Produto): Observable<any> 
-	{
-		return this.http.put(`${this.url}/${id}`, produto.toJson(), {observe: 'response'})
+	update(id: number, produto: Produto): Observable<any> {
+		return this.http.put(`${this.url}/${id}`, produto.toJson(), { observe: 'response' })
 	}
 }
