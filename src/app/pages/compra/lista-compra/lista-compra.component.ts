@@ -1,19 +1,27 @@
 import { Component } from '@angular/core';
+
+import { saveAs } from "file-saver";
 import { jsPDF } from "jspdf";
 import * as auto from "jspdf-autotable";
-import * as xlsx from "xlsx";
-import { saveAs } from "file-saver";
-import { CompraService } from 'src/app/services/compra.service';
+
+import { Message, MessageService } from 'primeng/api';
 import { Compra } from 'src/app/models/compra';
+
+import { CompraService } from 'src/app/services/compra.service';
+
+import * as xlsx from "xlsx";
 
 @Component({
   selector: 'app-lista-compra',
   templateUrl: './lista-compra.component.html',
   styleUrls: ['./lista-compra.component.css'],
+	providers: [MessageService],
 })
 export class ListaCompraComponent {
 
 	compras: Compra[] = [];
+
+	isLoading: boolean = false;
 	cols: any[] = [
 		{header: '#', field: 'idCompra'},
 		{header: 'Fornecedor', field: 'fornecedor'},
@@ -22,13 +30,33 @@ export class ListaCompraComponent {
 		{header: 'Data', field: 'dataCompra'}
 	]
 
-  constructor(private compraService: CompraService) {}
+  constructor(private compraService: CompraService, private messageService: MessageService) {}
 
   ngOnInit(): void {
-		this.compraService.findAll()
-			.subscribe(compras => {
-				this.compras = compras.map(compra => Compra.fromJson(compra))
-			})
+		this.isLoading = true;
+
+		this.getCompras().then((compras) => {
+			this.compras = compras;
+			this.isLoading = false;
+		}).catch((error) => {
+			this.messageService.add({severity:'error', summary: 'Ops!', detail: 'Ocorreu um erro ao consultar compras'});
+			console.error(error);
+			this.isLoading = false;
+		});
+	}
+
+	async getCompras(): Promise<Compra[]> {
+		let compraPromise = new Promise<Compra[]>((resolve, reject) => {
+			this.compraService.findAll().subscribe({
+				next: (response) => {
+					resolve(response.map(compra => Compra.fromJson(compra)))
+				},
+				error: (error) => {
+					reject(error)
+				}
+			});
+		});
+		return compraPromise;
 	}
 
 	exportarPDF(comprasFiltradas: any) {

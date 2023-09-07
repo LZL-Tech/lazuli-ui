@@ -1,4 +1,7 @@
-<div>
+<p-blockUI [blocked]="isLoading">
+	<p-progressSpinner></p-progressSpinner>
+</p-blockUI>
+<div #divFormularioProduto id="div-formulario-produto">
 	<div class="col-12">
 		<p-messages [(value)]="mensagens"></p-messages>
 	</div>
@@ -29,7 +32,7 @@
 				Tipo de produto
 			</label>
 			<p-dropdown [(ngModel)]="produto.tipoProduto" #tipoProduto="ngModel" id="tipo-produto" name="tipoProduto"
-				class="ng-touched" [options]="tiposProduto" optionLabel="descricao" [required]="true"></p-dropdown>
+				class="ng-touched" [options]="tiposProduto" optionLabel="descricao" [required]="true" [disabled]="isLoading"></p-dropdown>
 			<small class="p-error" *ngIf="tipoProduto.hasError('required') && tipoProduto.touched">*Campo obrigatório</small>
 		</div>
 
@@ -53,7 +56,7 @@
 		<div class="lg:col-2 md:col-6 sm:col-12">
 			<label for="unidade-medida">Unidade de medida</label>
 			<p-dropdown [(ngModel)]="produto.unidadeMedida" #unidadeMedida="ngModel" id="unidade-medida" name="unidadeMedida"
-				class="ng-touched" [options]="unidadesMedida" optionLabel="simbolo" [required]="true"></p-dropdown>
+				class="ng-touched" [options]="unidadesMedida" optionLabel="simbolo" [required]="true" [disabled]="isLoading"></p-dropdown>
 			<small class="p-error" *ngIf="unidadeMedida.hasError('required') && unidadeMedida.touched">*Campo obrigatório</small>
 		</div>
 
