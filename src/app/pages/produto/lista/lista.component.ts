@@ -47,4 +47,32 @@ export class ListaComponent {
 		});
 		return promise;
 	}
+
+	protected delete(produto: Produto): void
+	{
+		this.produtoService.delete(produto?.idProduto ?? 0).subscribe({
+			next: (resposta) => {
+				this.isLoading = true;
+				this.getProdutos().then(produtos => {
+					this.produtos = produtos;
+					this.isLoading = false;
+				}).catch(error => {
+					console.error(error);
+					this.messageService.add({severity:'error', summary:'Ops!', detail: 'Ocorreu um erro ao consultar os produtos'});
+					this.isLoading = false;
+				});
+				this.messageService.add({severity: "success", summary: "Sucesso", detail: `Produto ${produto.descricao} deletado com sucesso`});		
+			},
+			error: (erro) => {
+				if (erro.status === 409) 
+				{
+					this.messageService.add({severity: 'error', summary: 'Conflito', detail: `${erro.error.message}`});
+				} 
+				else 
+				{
+					this.messageService.add({ severity: 'error', summary: 'Error', detail:  `Ocorreu um erro ao tentar deletar o produto`});
+				}
+			}
+		}); 
+	}
 }
