@@ -33,10 +33,17 @@ export class ListaComponent {
 		this.produtoService.delete(produto?.idProduto ?? 0).subscribe({
 			next: (resposta) => {
 				this.listAll();
-				this.messageService.add({severity: "success", summary: "Sucesso", detail: `Produto ${produto.descricao} deletado com sucesso`})			
+				this.messageService.add({severity: "success", summary: "Sucesso", detail: `Produto ${produto.descricao} deletado com sucesso`});		
 			},
 			error: (erro) => {
-			  this.messageService.add({ severity: 'error', summary: 'Error', detail:  `Ocorreu um erro ao tentar deletar o produto`})
+				if (erro.status === 409) 
+				{
+					this.messageService.add({severity: 'error', summary: 'Conflito', detail: `${erro.error.message}`});
+				} 
+				else 
+				{
+					this.messageService.add({ severity: 'error', summary: 'Error', detail:  `Ocorreu um erro ao tentar deletar o produto`});
+				}
 			}
 		}); 
 	}
