@@ -23,11 +23,7 @@ export class ProdutoService {
 	}
 
 	save(produto: Produto): Observable<any> {
-<<<<<<< HEAD
 		return this.http.post(this.url, produto, {observe: 'response'})
-=======
-		return this.http.post(this.url, produto.toJson(), { observe: 'response' })
->>>>>>> master
 	}
 
 	findByTipoProdutoAndDescricao(idTipoProduto: number, descricao: string): Observable<Produto[]> {
