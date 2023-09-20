@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Message, MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Venda } from 'src/app/models/venda';
 import { VendaProduto } from 'src/app/models/venda.produto';
 import { VendaService } from 'src/app/services/venda.service';
@@ -15,27 +16,81 @@ export class FormularioComponent implements OnInit {
 	dataAtual = new Date()
 	mostrarDialogProduto = false
 	vendaForm: any;
+	isLoading = false;
 
 
 	constructor(
 		private vendaService: VendaService,
-		private messageService: MessageService
+		private messageService: MessageService,
+		private route: ActivatedRoute,
 	) { }
 
 	ngOnInit(): void {
+		this.isLoading = true;
+		try {
+			let idVendaEditar = this.route.snapshot.params['id'];
+			if (idVendaEditar) {
+				this.getVendaById(idVendaEditar).then((venda: Venda) => {
+					this.venda = venda;
+					this.isLoading = false;
+				})
+			} else {
+				this.isLoading = false;
+			}
+		} catch (error) {
+			console.error(error);
+			this.messageService.add({ severity: 'error', summary: 'Ops!', detail: 'Ocorreu um erro ao consultar a venda' });
+			this.isLoading = false;
+		}
+	}
+
+	private getVendaById(idVendaEditar: number): Promise<Venda> {
+		let vendaPromise = new Promise<Venda>((resolve, reject) => {
+			this.vendaService.findById(idVendaEditar).subscribe({
+				next: (response) => {
+					this.venda = Venda.fromJson(response);
+					resolve(this.venda);
+				},
+				error: (error) => {
+					console.error(error);
+					reject(error);
+				}
+			});
+		});
+		return vendaPromise;
 	}
 
 	onSubmit(vendaForm: any) {
 		if (!this.venda.produtos || this.venda.produtos.length === 0) {
 			this.messageService.add({ severity: 'warn', summary: 'Ops!', detail: 'É necessário informar ao menos um produto' })
 		} else {
-			this.vendaService.save(this.venda)
+			if (this.venda.idVenda) {
+				this.atualizarVenda(this.venda);
+			} else {
+				this.vendaService.save(this.venda)
 				.subscribe(response => {
 					this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Compra cadastrada' })
 					this.venda = new Venda()
 					vendaForm.reset()
 				})
+			}
 		}
+	}
+
+	atualizarVenda(venda: Venda): Promise<Venda> {
+		let vendaPromise = new Promise<Venda>((resolve, reject) => {
+			this.vendaService.update(venda).subscribe({
+				next: (response) => {
+					this.venda = Venda.fromJson(response);
+					resolve(this.venda);
+				},
+				error: (error) => {
+					console.error(error);
+					reject(error);
+				}
+			});
+		});
+		return vendaPromise;
 	}
 
 	adicionarProdutoVendidoDialog() {
