@@ -6,6 +6,7 @@ import * as auto from "jspdf-autotable";
 import { VendaService } from 'src/app/services/venda.service';
 import { Venda } from 'src/app/models/venda';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-lista-venda',
@@ -26,19 +27,21 @@ export class ListaVendaComponent implements OnInit {
 		{header: 'Total', field: 'valorTotalVenda'},
 	];
 
-	constructor(private vendaService: VendaService, private messageService: MessageService) { }
+	constructor(private vendaService: VendaService, private messageService: MessageService, private router: Router) { }
 
 	ngOnInit(): void {
 		this.isLoading = true;
 
-		this.getVendas().then((vendas) => {
-			this.vendas = vendas;
-			this.isLoading = false;
-		}).catch((error) => {
+		try {
+			this.getVendas().then((vendas) => {
+				this.vendas = vendas;
+				this.isLoading = false;
+			})
+		} catch (error) {
 			this.messageService.add({severity:'error', summary: 'Ops!', detail: 'Ocorreu um erro ao consultar vendas'});
-			console.log(error);
+			console.error(error);
 			this.isLoading = false;
-		});
+		}
 	}
 
 	async getVendas(): Promise<Venda[]> {
@@ -71,6 +74,14 @@ export class ListaVendaComponent implements OnInit {
 			})
 		})
 		pdf.save('vendas')
+	}
+
+	editar(idVenda: number) {
+		this.router.navigate(['/venda', idVenda]);
+	}
+
+	excluir(idVenda: number) {
+		console.log(idVenda);
 	}
 
 	exportarExcel() {

@@ -11,20 +11,21 @@ import { HomeComponent } from './pages/home/home.component';
 
 
 const routes: Routes = [
-	{path: '', component: HomeComponent},
-	{path: 'produto/cadastrar', component: ProdutoFormComponent},
-	{path: 'produto/atualizar/:id', component: ProdutoFormComponent},
-	{path: 'produto/listar', component: ProdutoListComponent},
-	{path: 'compra/cadastrar', component: CompraFormComponent},
-	{path: 'compra/listar', component: ListaCompraComponent},
-	{path: 'venda/registrar', component: FormularioComponent},
-	{path: 'venda/listar', component: ListaVendaComponent},
+	{ path: '', component: HomeComponent },
+	{ path: 'produto/cadastrar', component: ProdutoFormComponent },
+	{ path: 'produto/atualizar/:id', component: ProdutoFormComponent },
+	{ path: 'produto/listar', component: ProdutoListComponent },
+	{ path: 'compra/cadastrar', component: CompraFormComponent },
+	{ path: 'compra/listar', component: ListaCompraComponent },
+	{ path: 'venda/registrar', component: FormularioComponent },
+	{ path: 'venda/listar', component: ListaVendaComponent },
+	{ path: 'venda/:id', component: FormularioComponent },
 ]
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 
 })
 export class AppRoutingModule { }

@@ -70,7 +70,7 @@ export class ProdutoVendaDialogComponent implements OnInit {
 
 	async getIdTipoProdutoVenda(): Promise<number> {
 		return this.getTiposProdutos().then(tiposProduto => {
-			let tipoProdutoVenda = tiposProduto.find(tipoProduto => tipoProduto.descricao === TipoProdutoEnum.PRODUTO_FINAL);
+			let tipoProdutoVenda = tiposProduto.find(tipoProduto => tipoProduto.descricao?.toUpperCase() === TipoProdutoEnum.PRODUTO_FINAL.toUpperCase());
 			return tipoProdutoVenda?.idTipoProduto!;
 		});
 	}

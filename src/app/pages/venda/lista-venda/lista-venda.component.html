@@ -38,6 +38,8 @@
 				<p-sortIcon field="valorTotalVenda"></p-sortIcon>
 				<p-columnFilter type="numeric" field="valorTotalVenda" display="menu" currency="BRL"></p-columnFilter>
 			</th>
+			<th>
+			</th>
 		</tr>
 	</ng-template>
 	<ng-template pTemplate="body" let-venda>
@@ -56,6 +58,10 @@
 			</td>
 			<td>
 				{{ venda.valorTotalVenda | currency : "BRL" : "R$ " : "1.2" }}
+			</td>
+			<td class="flex justify-content-evenly">
+				<button pButton class="p-button-warning p-button-rounded" [icon]="'fa-solid fa-pen-to-square'" (click)="editar(venda.idVenda)"></button>
+				<button pButton class="p-button-danger p-button-rounded" [icon]="'fa-solid fa-trash'" (click)="excluir(venda.idVenda)"></button>
 			</td>
 		</tr>
 	</ng-template>

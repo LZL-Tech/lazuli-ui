@@ -35,9 +35,9 @@
 				<td>{{ produto.preco }}</td>
 				<td>{{ produto.quantidadeEstoque }}</td>
 				<td>{{ produto.tipoProduto.descricao }}</td>
-				<td>
-					<button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['/produto/atualizar', produto.idProduto]"></button>
-					<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(produto)"></button>
+				<td class="flex justify-content-evenly">
+					<button pButton pRipple [icon]="'fa-solid fa-pen-to-square'" class="p-button-rounded p-button-warning" [routerLink]="['/produto/atualizar', produto.idProduto]"></button>
+					<button pButton pRipple [icon]="'fa-solid fa-trash'" class="p-button-rounded p-button-danger" (click)="delete(produto)"></button>
 				</td>
 			</tr>
 		</ng-template>

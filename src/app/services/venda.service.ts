@@ -24,4 +24,8 @@ export class VendaService {
 	save(venda: Venda) {
 		return this.http.post(this.url, venda.toJson())
 	}
+
+	update(venda: Venda): Observable<any> {
+		return this.http.put(`${this.url}/${venda.idVenda}`, venda.toJson());
+	}
 }
