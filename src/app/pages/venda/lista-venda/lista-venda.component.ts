@@ -5,19 +5,20 @@ import jsPDF from 'jspdf';
 import * as auto from "jspdf-autotable";
 import { VendaService } from 'src/app/services/venda.service';
 import { Venda } from 'src/app/models/venda';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-lista-venda',
 	templateUrl: './lista-venda.component.html',
 	styleUrls: ['./lista-venda.component.css'],
-	providers: [MessageService]
+	providers: [MessageService, ConfirmationService]
 })
 export class ListaVendaComponent implements OnInit {
 
 	vendas: Venda[] = new Array<Venda>();
 
+	mostrarDialogExcluir = false;
 	isLoading: boolean = false;
 	cols = [
 		{header: '#', field: 'idVenda'},
@@ -27,7 +28,11 @@ export class ListaVendaComponent implements OnInit {
 		{header: 'Total', field: 'valorTotalVenda'},
 	];
 
-	constructor(private vendaService: VendaService, private messageService: MessageService, private router: Router) { }
+	constructor(
+		private vendaService: VendaService,
+		private messageService: MessageService,
+		private confirmationService: ConfirmationService,
+		private router: Router) { }
 
 	ngOnInit(): void {
 		this.isLoading = true;
@@ -80,8 +85,34 @@ export class ListaVendaComponent implements OnInit {
 		this.router.navigate(['/venda', idVenda]);
 	}
 
-	excluir(idVenda: number) {
-		console.log(idVenda);
+	confirmDialogExcluir(idVenda: number): void {
+		this.confirmationService.confirm({
+			message: 'Tem certeza que deseja excluir a venda?',
+			accept: () => {
+				this.excluir(idVenda).then(() => {
+					this.getVendas().then(() => {
+						this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Venda excluída' });
+					})
+				}
+				).catch((error) => {
+					console.error(error);
+					this.messageService.add({ severity: 'error', summary: 'Ops!', detail: 'Ocorreu um erro ao excluir a venda' });
+				});
+			}
+		});
+	}
+
+	private excluir(idVenda: number): Promise<void> {
+		return new Promise<void>((resolve, reject) => {
+			this.vendaService.delete(idVenda).subscribe({
+				next: () => {
+					resolve();
+				},
+				error: (error) => {
+					reject(error);
+				}
+			});
+		});
 	}
 
 	exportarExcel() {

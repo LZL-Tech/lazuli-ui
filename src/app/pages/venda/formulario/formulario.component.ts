@@ -14,7 +14,8 @@ import { VendaService } from 'src/app/services/venda.service';
 export class FormularioComponent implements OnInit {
 	venda: Venda = new Venda()
 	dataAtual = new Date()
-	mostrarDialogProduto = false
+
+	mostrarDialogProduto = false;
 	vendaForm: any;
 	isLoading = false;
 
@@ -65,24 +66,30 @@ export class FormularioComponent implements OnInit {
 			this.messageService.add({ severity: 'warn', summary: 'Ops!', detail: 'É necessário informar ao menos um produto' })
 		} else {
 			if (this.venda.idVenda) {
-				this.atualizarVenda(this.venda);
+				this.atualizarVenda(this.venda).then(() => {
+					this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Venda atualizada' })
+					this.venda = new Venda();
+					vendaForm.reset()
+				}).catch((error) => {
+					console.error(error);
+					this.messageService.add({ severity: 'error', summary: 'Ops!', detail: 'Ocorreu um erro ao atualizar a venda' })
+				});
 			} else {
 				this.vendaService.save(this.venda)
 				.subscribe(response => {
-					this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Compra cadastrada' })
+					this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Venda cadastrada' })
 					this.venda = new Venda()
 					vendaForm.reset()
-				})
+				});
 			}
 		}
 	}
 
-	atualizarVenda(venda: Venda): Promise<Venda> {
-		let vendaPromise = new Promise<Venda>((resolve, reject) => {
+	atualizarVenda(venda: Venda): Promise<void> {
+		let vendaPromise = new Promise<void>((resolve, reject) => {
 			this.vendaService.update(venda).subscribe({
 				next: (response) => {
-					this.venda = Venda.fromJson(response);
-					resolve(this.venda);
+					resolve();
 				},
 				error: (error) => {
 					console.error(error);

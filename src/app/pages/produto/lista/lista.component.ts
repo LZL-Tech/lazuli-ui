@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Message, MessageService } from 'primeng/api';
+import { ConfirmationService, Message, MessageService } from 'primeng/api';
 import { Produto } from 'src/app/models/produto';
 import { ProdutoService } from 'src/app/services/produto.service';
 
@@ -7,7 +7,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
 	selector: 'app-lista',
 	templateUrl: './lista.component.html',
 	styleUrls: ['./lista.component.css'],
-	providers: [MessageService]
+	providers: [MessageService, ConfirmationService]
 })
 export class ListaComponent {
 
@@ -16,7 +16,11 @@ export class ListaComponent {
 
 	isLoading = false;
 
-	constructor(private produtoService: ProdutoService, private messageService: MessageService) {}
+	constructor(
+		private produtoService: ProdutoService,
+		private messageService: MessageService,
+		private confirmationService: ConfirmationService
+	) {}
 
 	ngOnInit(): void {
 		this.isLoading = true;
@@ -48,31 +52,41 @@ export class ListaComponent {
 		return promise;
 	}
 
-	protected delete(produto: Produto): void
-	{
-		this.produtoService.delete(produto?.idProduto ?? 0).subscribe({
-			next: (resposta) => {
+	confirmaDialogExcluir(idProduto: number): void {
+		this.confirmationService.confirm({
+			message: 'Tem certeza que deseja excluir o produto?',
+			accept: () => {
 				this.isLoading = true;
-				this.getProdutos().then(produtos => {
-					this.produtos = produtos;
+				this.delete(idProduto).then(() => {
+					this.messageService.add({severity: "success", summary: "Sucesso", detail: `Produto excluido com sucesso`});
+					this.getProdutos().then(produtos => {
+						this.produtos = produtos;
+						this.isLoading = false;
+					}).catch(error => {
+						console.error(error);
+						this.messageService.add({severity:'error', summary:'Ops!', detail: 'Ocorreu um erro ao consultar os produtos'});
+						this.isLoading = false;
+					});
 					this.isLoading = false;
 				}).catch(error => {
 					console.error(error);
-					this.messageService.add({severity:'error', summary:'Ops!', detail: 'Ocorreu um erro ao consultar os produtos'});
+					this.messageService.add({severity:'error', summary:'Ops!', detail: 'Ocorreu um erro ao deletar o produto'});
 					this.isLoading = false;
 				});
-				this.messageService.add({severity: "success", summary: "Sucesso", detail: `Produto ${produto.descricao} deletado com sucesso`});		
-			},
-			error: (erro) => {
-				if (erro.status === 409) 
-				{
-					this.messageService.add({severity: 'error', summary: 'Conflito', detail: `${erro.error.message}`});
-				} 
-				else 
-				{
-					this.messageService.add({ severity: 'error', summary: 'Error', detail:  `Ocorreu um erro ao tentar deletar o produto`});
-				}
 			}
-		}); 
+		});
+	}
+
+	delete(idProduto: number): Promise<void> {
+		return new Promise<void>((resolve, reject) => {
+			this.produtoService.delete(idProduto).subscribe({
+				next: (response) => {
+					resolve();
+				},
+				error: (error) => {
+					reject(error);
+				}
+			});
+		});
 	}
 }

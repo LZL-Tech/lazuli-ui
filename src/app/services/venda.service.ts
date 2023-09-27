@@ -28,4 +28,8 @@ export class VendaService {
 	update(venda: Venda): Observable<any> {
 		return this.http.put(`${this.url}/${venda.idVenda}`, venda.toJson());
 	}
+
+	delete(idVenda: number): Observable<void> {
+		return this.http.delete<void>(`${this.url}/${idVenda}`);
+	}
 }
