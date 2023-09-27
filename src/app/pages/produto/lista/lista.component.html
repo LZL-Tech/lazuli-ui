@@ -1,3 +1,6 @@
+<p-confirmDialog [acceptLabel]="'Confirmar'" [rejectLabel]="'Cancelar'" [icon]="'fa-solid fa-triangle-exclamation'">
+</p-confirmDialog>
+
 <div #divListagemProduto id="div-listagem-produto">
 	<h2>Listagem de Produtos</h2>
 	<div class="col-12">
@@ -37,7 +40,7 @@
 				<td>{{ produto.tipoProduto.descricao }}</td>
 				<td class="flex justify-content-evenly">
 					<button pButton pRipple [icon]="'fa-solid fa-pen-to-square'" class="p-button-rounded p-button-warning" [routerLink]="['/produto/atualizar', produto.idProduto]"></button>
-					<button pButton pRipple [icon]="'fa-solid fa-trash'" class="p-button-rounded p-button-danger" (click)="delete(produto)"></button>
+					<button pButton pRipple [icon]="'fa-solid fa-trash'" class="p-button-rounded p-button-danger" (click)="confirmaDialogExcluir(produto.idProduto)"></button>
 				</td>
 			</tr>
 		</ng-template>

@@ -8,11 +8,11 @@
 
 <p-table #tabelaVendas [value]="vendas" [columns]="cols" [paginator]="true" [totalRecords]="vendas.length" [rows]="10" [rowsPerPageOptions]="[5, 10, 20, 50]" [loading]="isLoading">
 	<ng-template pTemplate="caption" class="grid">
-			<div class="col-2 flex justify-content-between">
-				<button pButton class="col-4 p-button-secondary p-button-rounded" [icon]="'fa-solid fa-file-csv'" pTooltip="Exportar CSV" [tooltipPosition]="'bottom'" (click)="tabelaVendas.exportCSV()"></button>
-				<button pButton class="col-4 p-button-danger p-button-rounded" [icon]="'fa-solid fa-file-pdf'" pTooltip="Exportar PDF" [tooltipPosition]="'bottom'" (click)="exportarPDF(tabelaVendas.filteredValue)"></button>
-				<button pButton class="col-4 p-button-success p-button-rounded" [icon]="'fa-solid fa-file-excel'" pTooltip="Exportar Excel" [tooltipPosition]="'bottom'" (click)="exportarExcel()"></button>
-			</div>
+		<div class="col-2 flex justify-content-between">
+			<button pButton class="col-4 p-button-secondary p-button-rounded" [icon]="'fa-solid fa-file-csv'" pTooltip="Exportar CSV" [tooltipPosition]="'bottom'" (click)="tabelaVendas.exportCSV()"></button>
+			<button pButton class="col-4 p-button-danger p-button-rounded" [icon]="'fa-solid fa-file-pdf'" pTooltip="Exportar PDF" [tooltipPosition]="'bottom'" (click)="exportarPDF(tabelaVendas.filteredValue)"></button>
+			<button pButton class="col-4 p-button-success p-button-rounded" [icon]="'fa-solid fa-file-excel'" pTooltip="Exportar Excel" [tooltipPosition]="'bottom'" (click)="exportarExcel()"></button>
+		</div>
 	</ng-template>
 
 	<ng-template pTemplate="header">
