@@ -14,7 +14,8 @@ import { VendaService } from 'src/app/services/venda.service';
 export class FormularioComponent implements OnInit {
 	venda: Venda = new Venda()
 	dataAtual = new Date()
-	mostrarDialogProduto = false
+
+	mostrarDialogProduto = false;
 	vendaForm: any;
 	isLoading = false;
 

@@ -6,6 +6,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { BlockUIModule } from 'primeng/blockui';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
@@ -28,19 +29,19 @@ import { ProdutoVendaDialogComponent } from './produto-venda-dialog/produto-vend
 		ListaVendaComponent
 	],
 	imports: [
-		CommonModule,
-		FormsModule,
-		ButtonModule,
-		BlockUIModule,
-		InputTextModule,
-		CalendarModule,
-		TableModule,
-		DialogModule,
-		ToolbarModule,
 		AutoCompleteModule,
-		ProgressSpinnerModule,
-		MessageModule,
+		BlockUIModule,
+		ButtonModule,
+		CalendarModule,
+		CommonModule,
+		ConfirmDialogModule,
+		DialogModule,
+		FormsModule,
+		InputTextModule,
 		MessagesModule,
+		MessageModule,
+		ProgressSpinnerModule,
+		ToolbarModule,
 		TableModule,
 		TooltipModule,
 	]
