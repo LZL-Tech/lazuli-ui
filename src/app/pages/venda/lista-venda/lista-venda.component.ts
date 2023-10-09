@@ -89,14 +89,20 @@ export class ListaVendaComponent implements OnInit {
 		this.confirmationService.confirm({
 			message: 'Tem certeza que deseja excluir a venda?',
 			accept: () => {
+				this.isLoading = true;
 				this.excluir(idVenda).then(() => {
 					this.getVendas().then(() => {
 						this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Venda excluída' });
+						this.getVendas().then((vendas) => {
+							this.vendas = vendas;
+							this.isLoading = false;
+						})
 					})
 				}
 				).catch((error) => {
 					console.error(error);
 					this.messageService.add({ severity: 'error', summary: 'Ops!', detail: 'Ocorreu um erro ao excluir a venda' });
+					this.isLoading = false;
 				});
 			}
 		});
