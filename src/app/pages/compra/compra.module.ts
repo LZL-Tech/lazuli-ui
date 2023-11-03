@@ -15,6 +15,7 @@ import { MessagesModule } from 'primeng/messages';
 import { FormularioComponent } from './formulario/formulario.component';
 import { ProdutoCompraDialogComponent } from './produto-compra-dialog/produto-compra-dialog.component';
 
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 
 @NgModule({
@@ -24,18 +25,18 @@ import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 		ListaCompraComponent
 	],
 	imports: [
-		CommonModule,
-		FormsModule,
-		ButtonModule,
-		InputTextModule,
-		CalendarModule,
-		TableModule,
-		DialogModule,
-		ToolbarModule,
 		AutoCompleteModule,
+		ButtonModule,
+		CalendarModule,
+		CommonModule,
+		ConfirmDialogModule,
+		DialogModule,
+		FormsModule,
+		InputTextModule,
 		MessageModule,
 		MessagesModule,
 		TableModule,
+		ToolbarModule,
 		TooltipModule,
 	]
 })
