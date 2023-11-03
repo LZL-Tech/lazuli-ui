@@ -24,4 +24,8 @@ export class CompraService {
 	save(compra: Compra) {
 		return this.http.post(this.url, compra.toJson())
 	}
+
+	delete(idCompra: number): Observable<any> {
+		return this.http.delete(`${this.url}/${idCompra}`)
+	}
 }

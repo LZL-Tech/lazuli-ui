@@ -4,7 +4,7 @@ import { saveAs } from "file-saver";
 import { jsPDF } from "jspdf";
 import * as auto from "jspdf-autotable";
 
-import { Message, MessageService } from 'primeng/api';
+import { ConfirmationService, Message, MessageService } from 'primeng/api';
 import { Compra } from 'src/app/models/compra';
 
 import { CompraService } from 'src/app/services/compra.service';
@@ -15,7 +15,7 @@ import * as xlsx from "xlsx";
   selector: 'app-lista-compra',
   templateUrl: './lista-compra.component.html',
   styleUrls: ['./lista-compra.component.css'],
-	providers: [MessageService],
+	providers: [MessageService, ConfirmationService],
 })
 export class ListaCompraComponent {
 
@@ -30,7 +30,10 @@ export class ListaCompraComponent {
 		{header: 'Data', field: 'dataCompra'}
 	]
 
-  constructor(private compraService: CompraService, private messageService: MessageService) {}
+  constructor(
+		private compraService: CompraService,
+		private messageService: MessageService,
+		private confirmationService: ConfirmationService) {}
 
   ngOnInit(): void {
 		this.isLoading = true;
@@ -57,6 +60,42 @@ export class ListaCompraComponent {
 			});
 		});
 		return compraPromise;
+	}
+
+	excluir(idCompra: number) {
+		return new Promise<any>((resolve, reject) => {
+			this.compraService.delete(idCompra).subscribe({
+				next: (response) => {
+					resolve(response);
+				},
+				error: (error) => {
+					reject(error);
+				}
+			});
+		});
+	}
+
+	confirmDialogExcluir(idCompra: number): void {
+		this.confirmationService.confirm({
+			message: 'Tem certeza que deseja excluir a compra?',
+			accept: () => {
+				this.isLoading = true;
+				this.excluir(idCompra).then(() => {
+					this.getCompras().then(() => {
+						this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Compra excluída' });
+						this.getCompras().then((vendas) => {
+							this.compras = vendas;
+							this.isLoading = false;
+						})
+					})
+				}
+				).catch((error) => {
+					console.error(error);
+					this.messageService.add({ severity: 'error', summary: 'Ops!', detail: 'Ocorreu um erro ao excluir a compra' });
+					this.isLoading = false;
+				});
+			}
+		});
 	}
 
 	exportarPDF(comprasFiltradas: any) {
