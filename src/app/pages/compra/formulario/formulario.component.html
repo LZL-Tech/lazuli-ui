@@ -1,4 +1,8 @@
 <div>
+	<p-blockUI [blocked]="isLoading">
+		<p-progressSpinner></p-progressSpinner>
+	</p-blockUI>
+
 	<div>
 		<p-messages></p-messages>
 	</div>
@@ -29,7 +33,8 @@
 			<!-- TODO: Colocar dias da semana em português -->
 			<label for="dataCompra">Data da Compra</label>
 			<div>
-				<p-calendar [(ngModel)]="compra.dataCompra" #dataCompra="ngModel" name="dataCompra" [dateFormat]="'dd/mm/yy'" [showIcon]="true" [maxDate]="dataAtual" [required]="true">
+				<p-calendar [(ngModel)]="compra.dataCompra" #dataCompra="ngModel" name="dataCompra" [disabled]="isLoading"
+					[dateFormat]="'dd/mm/yy'" [showIcon]="true" [maxDate]="dataAtual" [required]="true">
 				</p-calendar>
 			</div>
 			<small class="p-error block" *ngIf="dataCompra.hasError('required') && dataCompra.touched">
@@ -39,7 +44,7 @@
 
 		<p-table [value]="compra.produtos" class="col-12" [paginator]="true" [rows]="5"
 			[rowsPerPageOptions]="[5, compra.produtos.length]" [totalRecords]="compra.produtos.length"
-			[currentPageReportTemplate]="'Total de produtos: {totalRecords}'" [showCurrentPageReport]="true">
+			[currentPageReportTemplate]="'Total de produtos: {totalRecords}'" [showCurrentPageReport]="true" [loading]="isLoading">
 
 			<ng-template pTemplate="caption">
 				<div class="flex justify-content-between align-items-center">

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { saveAs } from "file-saver";
 import { jsPDF } from "jspdf";
@@ -33,7 +34,8 @@ export class ListaCompraComponent {
   constructor(
 		private compraService: CompraService,
 		private messageService: MessageService,
-		private confirmationService: ConfirmationService) {}
+		private confirmationService: ConfirmationService,
+		private router: Router) {}
 
   ngOnInit(): void {
 		this.isLoading = true;
@@ -73,6 +75,10 @@ export class ListaCompraComponent {
 				}
 			});
 		});
+	}
+
+	editar(idCompra: number) {
+		this.router.navigate(['/compra', idCompra]);
 	}
 
 	confirmDialogExcluir(idCompra: number): void {

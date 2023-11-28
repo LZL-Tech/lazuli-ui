@@ -54,7 +54,7 @@
 			<td>{{ compra.totalGasto | currency:'BRL':'R$ ':'1.2' }}</td>
 			<td>{{ compra.dataCompra | date:'dd/MM/yyyy' }}</td>
 			<td class="flex justify-content-evenly">
-				<button pButton class="p-button-warning p-button-rounded" [icon]="'fa-solid fa-pen-to-square'"></button>
+				<button pButton class="p-button-warning p-button-rounded" [icon]="'fa-solid fa-pen-to-square'" (click)="editar(compra.idCompra)"></button>
 				<button pButton class="p-button-danger p-button-rounded" [icon]="'fa-solid fa-trash'" (click)="confirmDialogExcluir(compra.idCompra)"></button>
 			</td>
 		</tr>
