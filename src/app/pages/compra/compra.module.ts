@@ -17,6 +17,8 @@ import { ProdutoCompraDialogComponent } from './produto-compra-dialog/produto-co
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ListaCompraComponent } from './lista-compra/lista-compra.component';
+import { BlockUIModule } from 'primeng/blockui';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
 	declarations: [
@@ -26,6 +28,7 @@ import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 	],
 	imports: [
 		AutoCompleteModule,
+		BlockUIModule,
 		ButtonModule,
 		CalendarModule,
 		CommonModule,
@@ -35,6 +38,7 @@ import { ListaCompraComponent } from './lista-compra/lista-compra.component';
 		InputTextModule,
 		MessageModule,
 		MessagesModule,
+		ProgressSpinnerModule,
 		TableModule,
 		ToolbarModule,
 		TooltipModule,

@@ -28,4 +28,8 @@ export class CompraService {
 	delete(idCompra: number): Observable<any> {
 		return this.http.delete(`${this.url}/${idCompra}`)
 	}
+
+	update(compra: Compra): Observable<Compra> {
+		return this.http.put<Compra>(`${this.url}/${compra.idCompra}`, compra.toJson());
+	}
 }

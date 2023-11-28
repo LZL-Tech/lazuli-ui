@@ -10,22 +10,32 @@
 		<ng-template pTemplate="header">
 			<tr>
 				<th pSortableColumn="idProduto">
-					# <p-sortIcon field="idProduto"></p-sortIcon>
+					#
+					<p-sortIcon field="idProduto"></p-sortIcon>
+					<p-columnFilter type="numeric" field="idProduto" display="menu"></p-columnFilter>
 				</th>
 				<th pSortableColumn="descricao">
-					Descrição <p-sortIcon field="descricao"></p-sortIcon>
+					Descrição
+					<p-sortIcon field="descricao"></p-sortIcon>
+					<p-columnFilter type="text" field="descricao" display="menu"></p-columnFilter>
 				</th>
 				<th>
 					Marca
+					<p-columnFilter type="text" field="marca" display="menu"></p-columnFilter>
 				</th>
 				<th pSortableColumn="preco">
-					Preco <p-sortIcon field="preco"></p-sortIcon>
+					Preco
+					<p-sortIcon field="preco"></p-sortIcon>
+					<p-columnFilter type="numeric" field="preco" display="menu" currency="BRL"></p-columnFilter>
 				</th>
 				<th pSortableColumn="quantidadeEstoque">
-					Quantidade <p-sortIcon field="quantidadeEstoque"></p-sortIcon>
+					Quantidade
+					<p-sortIcon field="quantidadeEstoque"></p-sortIcon>
+					<p-columnFilter type="numeric" field="quantidadeEstoque" display="menu"></p-columnFilter>
 				</th>
 				<th pSortableColumn="tipoProduto.descricao">
-					Tipo <p-sortIcon field="tipoProduto.descricao"></p-sortIcon>
+					Tipo
+					<p-sortIcon field="tipoProduto.descricao"></p-sortIcon>
 				</th>
 				<th style="width: 10rem"></th>
 			</tr>

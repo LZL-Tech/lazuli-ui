@@ -17,6 +17,7 @@ const routes: Routes = [
 	{ path: 'produto/listar', component: ProdutoListComponent },
 	{ path: 'compra/cadastrar', component: CompraFormComponent },
 	{ path: 'compra/listar', component: ListaCompraComponent },
+	{ path: 'compra/:id', component: CompraFormComponent },
 	{ path: 'venda/registrar', component: FormularioComponent },
 	{ path: 'venda/listar', component: ListaVendaComponent },
 	{ path: 'venda/:id', component: FormularioComponent },
