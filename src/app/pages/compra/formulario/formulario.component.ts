@@ -36,6 +36,8 @@ export class FormularioComponent implements OnInit {
 				.finally(() => {
 					this.isLoading = false;
 				});
+		} else {
+			this.isLoading = false;
 		}
 	}
 
